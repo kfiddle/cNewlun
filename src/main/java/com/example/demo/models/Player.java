@@ -7,6 +7,8 @@ import com.example.demo.enums.Type;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.Collection;
 
 @Entity
 public class Player {
@@ -30,6 +32,9 @@ public class Player {
     private String city;
     private String state;
     private String zip;
+
+    @ManyToMany
+    private Collection<Piece> pieces;
 
 
     public Player() {
