@@ -1,6 +1,9 @@
 package com.example.demo.models;
 
 
+import com.example.demo.enums.Instrument;
+import com.example.demo.enums.Type;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,10 +15,11 @@ public class Player {
     @GeneratedValue
     private Long id;
 
+    private Instrument instrument;
+    private Type type;
+
     private String firstName;
     private String lastName;
-
-
 
     private String email;
     private String homePhone;
@@ -26,7 +30,6 @@ public class Player {
     private String city;
     private String state;
     private String zip;
-
 
 
     public Player() {
@@ -51,6 +54,21 @@ public class Player {
     }
 
     public Player(String firstName, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.homePhone = homePhone;
+        this.cellPhone = cellPhone;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+    }
+
+    public Player(Instrument instrument, Type type, String firstName, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip) {
+        this.instrument = instrument;
+        this.type = type;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -103,6 +121,14 @@ public class Player {
         this.zip = zip;
     }
 
+    public void setInstrument(Instrument instrument) {
+        this.instrument = instrument;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
     public Long getId() {
         return id;
     }
@@ -113,6 +139,14 @@ public class Player {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public Instrument getInstrument() {
+        return instrument;
     }
 
     public String getEmail() {
@@ -146,4 +180,8 @@ public class Player {
     public String getZip() {
         return zip;
     }
+
+
+
+
 }
