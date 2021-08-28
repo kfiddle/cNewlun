@@ -21,6 +21,19 @@ public class Instrument {
     public Instrument() {
     }
 
+    public Instrument(String name) {
+        this.name = name;
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public Collection<Player> getPlayers() {
+        return players;
+    }
+
+    public Collection<Piece> getPieces() {
+        return pieces;
+    }
 }

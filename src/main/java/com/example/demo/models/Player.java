@@ -53,6 +53,21 @@ public class Player {
         this.email = email;
     }
 
+    public Player(String firstName, String lastName, Instrument instrument) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.instrument = instrument;
+    }
+
+    public Player(String firstName, String lastName, Instrument instrument, Type type) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.instrument = instrument;
+        this.type = type;
+    }
+
+
+
     public Player(String firstName, String lastName, String email, String cellPhone) {
         this.firstName = firstName;
         this.lastName = lastName;
