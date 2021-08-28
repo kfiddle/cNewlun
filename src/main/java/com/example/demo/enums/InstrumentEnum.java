@@ -1,6 +1,6 @@
 package com.example.demo.enums;
 
-public enum Instrument {
+public enum InstrumentEnum {
     FLUTE("Flute"),
     OBOE("Oboe"),
     CLARINET("Clarinet"),
@@ -21,7 +21,7 @@ public enum Instrument {
 
     private final String stringVersion;
 
-    Instrument(String stringVersion) {
+    InstrumentEnum(String stringVersion) {
         this.stringVersion = stringVersion;
     }
 

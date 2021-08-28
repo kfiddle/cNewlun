@@ -17,7 +17,7 @@ public class Piece {
     private Performance performance;
 
     @ManyToMany
-    private Collection<Player> players;
+    private Collection<Instrument> instruments;
 
     public Piece() {
     }
@@ -26,12 +26,12 @@ public class Piece {
         this.title = title;
     }
 
-    public void setPlayers(Collection<Player> players) {
-        this.players = players;
-    }
-
     public void setPerformance(Performance performance) {
         this.performance = performance;
+    }
+
+    public void setInstruments(Collection<Instrument> instruments) {
+        this.instruments = instruments;
     }
 
     public Long getId() {
@@ -46,7 +46,7 @@ public class Piece {
         return performance;
     }
 
-    public Collection<Player> getPlayers() {
-        return players;
+    public Collection<Instrument> getInstruments() {
+        return instruments;
     }
 }

@@ -1,13 +1,10 @@
 package com.example.demo.models;
 
 
-import com.example.demo.enums.Instrument;
+import com.example.demo.enums.InstrumentEnum;
 import com.example.demo.enums.Type;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
@@ -17,7 +14,10 @@ public class Player {
     @GeneratedValue
     private Long id;
 
+    @ManyToOne
     private Instrument instrument;
+
+    private InstrumentEnum instrumentEnum;
     private Type type;
 
     private String firstName;
@@ -36,6 +36,8 @@ public class Player {
     @ManyToMany
     private Collection<Piece> pieces;
 
+    @ManyToMany
+    private Collection<PerformanceId> performanceIds;
 
     public Player() {
     }
@@ -71,7 +73,22 @@ public class Player {
         this.zip = zip;
     }
 
-    public Player(Instrument instrument, Type type, String firstName, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip) {
+    public Player(InstrumentEnum instrumentEnum, Type type, String firstName, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip) {
+        this.instrumentEnum = instrumentEnum;
+        this.type = type;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.homePhone = homePhone;
+        this.cellPhone = cellPhone;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+    }
+
+    public Player(Instrument instrument, Type type, String firstName, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, Collection<Piece> pieces, Collection<PerformanceId> performanceIds) {
         this.instrument = instrument;
         this.type = type;
         this.firstName = firstName;
@@ -84,6 +101,8 @@ public class Player {
         this.city = city;
         this.state = state;
         this.zip = zip;
+        this.pieces = pieces;
+        this.performanceIds = performanceIds;
     }
 
     public void setFirstName(String firstName) {
@@ -126,12 +145,20 @@ public class Player {
         this.zip = zip;
     }
 
-    public void setInstrument(Instrument instrument) {
-        this.instrument = instrument;
+    public void setInstrument(InstrumentEnum instrumentEnum) {
+        this.instrumentEnum = instrumentEnum;
     }
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public void setPieces(Collection<Piece> pieces) {
+        this.pieces = pieces;
+    }
+
+    public void setPerformanceIds(Collection<PerformanceId> performanceIds) {
+        this.performanceIds = performanceIds;
     }
 
     public Long getId() {
@@ -146,12 +173,24 @@ public class Player {
         return lastName;
     }
 
+    public Instrument getInstrument() {
+        return instrument;
+    }
+
+    public InstrumentEnum getInstrumentEnum() {
+        return instrumentEnum;
+    }
+
     public Type getType() {
         return type;
     }
 
-    public Instrument getInstrument() {
-        return instrument;
+    public Collection<Piece> getPieces() {
+        return pieces;
+    }
+
+    public Collection<PerformanceId> getPerformanceIds() {
+        return performanceIds;
     }
 
     public String getEmail() {
