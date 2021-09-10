@@ -2,14 +2,22 @@ package com.example.demo;
 
 import com.example.demo.enums.Type;
 import com.example.demo.models.Instrument;
+import com.example.demo.models.Performance;
+import com.example.demo.models.Piece;
 import com.example.demo.models.Player;
 import com.example.demo.repositories.InstrumentRepository;
+import com.example.demo.repositories.PerformanceRepository;
+import com.example.demo.repositories.PieceRepository;
 import com.example.demo.repositories.PlayerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.core.parameters.P;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Collection;
 
+@Component
 public class Populator implements CommandLineRunner {
 
     @Resource
@@ -17,6 +25,12 @@ public class Populator implements CommandLineRunner {
 
     @Resource
     InstrumentRepository instrumentRepo;
+
+    @Resource
+    PieceRepository pieceRepo;
+
+    @Resource
+    PerformanceRepository performanceRepo;
 
 
     @Override
@@ -44,6 +58,7 @@ public class Populator implements CommandLineRunner {
         instrumentRepo.save(oboe);
         instrumentRepo.save(clarinet);
         instrumentRepo.save(bassoon);
+        instrumentRepo.save(eBClarinet);
         instrumentRepo.save(horn);
         instrumentRepo.save(trumpet);
         instrumentRepo.save(trombone);
@@ -68,6 +83,8 @@ public class Populator implements CommandLineRunner {
         Player jeffS = new Player("Jeff", "Singler", cello, Type.CONTRACT);
         Player jiYoung = new Player("Ji Young", "Nam", viola, Type.CONTRACT);
 
+
+
         playerRepo.save(leAnne);
         playerRepo.save(seanG);
         playerRepo.save(sarahH);
@@ -78,6 +95,28 @@ public class Populator implements CommandLineRunner {
         playerRepo.save(jenJ);
         playerRepo.save(jeffS);
         playerRepo.save(jiYoung);
+
+        Piece stringsPiece = new Piece("Strings Piece");
+        Piece windsPiece = new Piece("Winds Only");
+        Piece fullGroup = new Piece("Huge Symphony");
+        Piece pulcinella = new Piece("Pulcinella");
+
+        Collection<Instrument> stringsPlayers = new ArrayList<>();
+        stringsPlayers.add(violin);
+        stringsPlayers.add(violin);
+        System.out.println(stringsPlayers.size());
+
+
+        Performance firstShow = new Performance("First show");
+        Performance secondShow = new Performance("Second show");
+
+        pieceRepo.save(pulcinella);
+
+        pulcinella.setInstruments(stringsPlayers);
+        pieceRepo.save(pulcinella);
+
+
+
 
 
     }

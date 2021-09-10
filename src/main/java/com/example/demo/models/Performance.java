@@ -14,13 +14,32 @@ public class Performance {
     private Long id;
 
     private String title;
-    private String order;
 
     @OneToMany(mappedBy = "performance")
     private Collection<Piece> pieces;
 
+    public Performance() {
+    }
 
+    public Performance(String title) {
+        this.title = title;
+    }
 
+    public void setPieces(Collection<Piece> pieces) {
+        this.pieces = pieces;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Collection<Piece> getPieces() {
+        return pieces;
+    }
 
 
 }

@@ -12,7 +12,7 @@ public class Instrument {
     private Long id;
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "instrument")
     private Collection<Player> players;
 
     @ManyToMany
