@@ -20,7 +20,7 @@ public class Player {
     private InstrumentEnum instrumentEnum;
     private Type type;
 
-    private String firstName;
+    private String firstNameArea;
     private String lastName;
 
     private String email;
@@ -42,25 +42,25 @@ public class Player {
     public Player() {
     }
 
-    public Player(String firstName, String lastName) {
-        this.firstName = firstName;
+    public Player(String firstNameArea, String lastName) {
+        this.firstNameArea = firstNameArea;
         this.lastName = lastName;
     }
 
-    public Player(String firstName, String lastName, String email) {
-        this.firstName = firstName;
+    public Player(String firstNameArea, String lastName, String email) {
+        this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         this.email = email;
     }
 
-    public Player(String firstName, String lastName, Instrument instrument) {
-        this.firstName = firstName;
+    public Player(String firstNameArea, String lastName, Instrument instrument) {
+        this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         this.instrument = instrument;
     }
 
-    public Player(String firstName, String lastName, Instrument instrument, Type type) {
-        this.firstName = firstName;
+    public Player(String firstNameArea, String lastName, Instrument instrument, Type type) {
+        this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         this.instrument = instrument;
         this.type = type;
@@ -68,15 +68,15 @@ public class Player {
 
 
 
-    public Player(String firstName, String lastName, String email, String cellPhone) {
-        this.firstName = firstName;
+    public Player(String firstNameArea, String lastName, String email, String cellPhone) {
+        this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         this.email = email;
         this.cellPhone = cellPhone;
     }
 
-    public Player(String firstName, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip) {
-        this.firstName = firstName;
+    public Player(String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip) {
+        this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         this.email = email;
         this.homePhone = homePhone;
@@ -88,10 +88,10 @@ public class Player {
         this.zip = zip;
     }
 
-    public Player(InstrumentEnum instrumentEnum, Type type, String firstName, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip) {
+    public Player(InstrumentEnum instrumentEnum, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip) {
         this.instrumentEnum = instrumentEnum;
         this.type = type;
-        this.firstName = firstName;
+        this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         this.email = email;
         this.homePhone = homePhone;
@@ -103,10 +103,10 @@ public class Player {
         this.zip = zip;
     }
 
-    public Player(Instrument instrument, Type type, String firstName, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, Collection<Piece> pieces, Collection<PerformanceId> performanceIds) {
+    public Player(Instrument instrument, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, Collection<Piece> pieces, Collection<PerformanceId> performanceIds) {
         this.instrument = instrument;
         this.type = type;
-        this.firstName = firstName;
+        this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         this.email = email;
         this.homePhone = homePhone;
@@ -120,8 +120,8 @@ public class Player {
         this.performanceIds = performanceIds;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstNameArea(String firstNameArea) {
+        this.firstNameArea = firstNameArea;
     }
 
     public void setLastName(String lastName) {
@@ -180,8 +180,8 @@ public class Player {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstNameArea() {
+        return firstNameArea;
     }
 
     public String getLastName() {
