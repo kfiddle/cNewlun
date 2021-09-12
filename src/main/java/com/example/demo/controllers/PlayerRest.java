@@ -1,14 +1,17 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.models.Instrument;
 import com.example.demo.models.PerformanceId;
 import com.example.demo.models.Player;
+import com.example.demo.repositories.InstrumentRepository;
 import com.example.demo.repositories.PerformanceIdRepository;
 import com.example.demo.repositories.PlayerRepository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @CrossOrigin
@@ -17,6 +20,9 @@ public class PlayerRest {
 
     @Resource
     PlayerRepository playerRepo;
+
+    @Resource
+    InstrumentRepository instrumentRepo;
 
     @Resource
     PerformanceIdRepository performanceIdRepo;
@@ -45,6 +51,17 @@ public class PlayerRest {
                 return (Collection<Player>) playerRepo.findAll();
             } else if (incomingPlayer.getId() == null) {
                 Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
+
+                if (incomingPlayer.getInstruments().size() > 0) {
+                    Collection<Instrument> instrumentsToAdd = new ArrayList<>();
+
+                    for (Instrument instrument : incomingPlayer.getInstruments()) {
+                        if (instrumentRepo.findById(instrument.getId()).isPresent()) {
+                            instrumentsToAdd.add(instrument);
+                        }
+                    }
+                    playerToAdd.setInstruments(instrumentsToAdd);
+                }
 
                 if (incomingPlayer.getEmail() != null) {
                     playerToAdd.setEmail(incomingPlayer.getEmail());
@@ -81,7 +98,7 @@ public class PlayerRest {
                 if (incomingPlayer.getType() != null) {
                     playerToAdd.setType(incomingPlayer.getType());
                 }
-
+                
                 playerRepo.save(playerToAdd);
             } else if (playerRepo.findById(incomingPlayer.getId()).isPresent()) {
                 Player playerToEdit = playerRepo.findById(incomingPlayer.getId()).get();

@@ -162,8 +162,12 @@ public class Player {
         this.zip = zip;
     }
 
-    public void setInstrument(InstrumentEnum instrumentEnum) {
+    public void setInstrumentEnum(InstrumentEnum instrumentEnum) {
         this.instrumentEnum = instrumentEnum;
+    }
+
+    public void setInstruments(Collection<Instrument> instruments) {
+        this.instruments = instruments;
     }
 
     public void setType(Type type) {
