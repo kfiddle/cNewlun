@@ -41,7 +41,7 @@ public class PlayerRest {
 
         try {
 
-            if (playerRepo.existsByFirstName(incomingPlayer.getFirstNameArea()) && playerRepo.existsByLastName(incomingPlayer.getLastName())) {
+            if (playerRepo.existsByFirstNameArea(incomingPlayer.getFirstNameArea()) && playerRepo.existsByLastName(incomingPlayer.getLastName())) {
                 return (Collection<Player>) playerRepo.findAll();
             } else if (incomingPlayer.getId() == null) {
                 Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());

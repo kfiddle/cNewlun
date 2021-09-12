@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -12,6 +14,7 @@ public class Instrument {
     private Long id;
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "instrument")
     private Collection<Player> players;
 
