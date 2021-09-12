@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import static com.example.demo.enums.Type.CONTRACT;
+
 @CrossOrigin
 @RestController
 public class PlayerRest {
@@ -32,6 +34,14 @@ public class PlayerRest {
     public Collection<Player> getAllPlayers() {
         return (Collection<Player>) playerRepo.findAll();
     }
+
+    @RequestMapping("/get-all-contracted-players")
+    public Collection<Player> getAllContractedPlayers() {
+//        return playerRepo.findByType(CONTRACT);
+        return (Collection<Player>) playerRepo.findAll();
+
+    }
+
 
     @PostMapping("/delete-player")
     public Collection<Player> deleteGameFromDatabase(@RequestBody Player playerToDelete) throws IOException {
@@ -98,7 +108,7 @@ public class PlayerRest {
                 if (incomingPlayer.getType() != null) {
                     playerToAdd.setType(incomingPlayer.getType());
                 }
-                
+
                 playerRepo.save(playerToAdd);
             } else if (playerRepo.findById(incomingPlayer.getId()).isPresent()) {
                 Player playerToEdit = playerRepo.findById(incomingPlayer.getId()).get();
