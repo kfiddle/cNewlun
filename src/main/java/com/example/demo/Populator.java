@@ -72,16 +72,37 @@ public class Populator implements CommandLineRunner {
         instrumentRepo.save(bass);
         instrumentRepo.save(harp);
 
-        Player leAnne = new Player("Leanne", "Wistrom", flute, Type.CONTRACT);
-        Player seanG = new Player("Sean", "Gabriel", flute, Type.CONTRACT);
-        Player sarahH = new Player("Sarah", "Hamilton", eBClarinet, Type.CONTRACT);
-        Player danna = new Player("Danna", "Sundet", oboe, Type.CONTRACT);
-        Player heatherS = new Player("Heather", "Storey", oboe, Type.CONTRACT);
-        Player ami = new Player("Amitai", "Vardi", clarinet, Type.CONTRACT);
-        Player liesl = new Player("Liesl", "Hook", violin, Type.SUB);
-        Player jenJ = new Player("Jennifer", "Jansen", violin, Type.CONTRACT);
-        Player jeffS = new Player("Jeff", "Singler", cello, Type.CONTRACT);
-        Player jiYoung = new Player("Ji Young", "Nam", viola, Type.CONTRACT);
+        ArrayList<Instrument> violinList = new ArrayList<>();
+        violinList.add(violin);
+
+        ArrayList<Instrument> violaList = new ArrayList<>();
+        violaList.add(viola);
+
+        ArrayList<Instrument> celloList = new ArrayList<>();
+        celloList.add(cello);
+
+        ArrayList<Instrument> clarinetList = new ArrayList<>();
+        clarinetList.add(clarinet);
+
+        ArrayList<Instrument> oboeList = new ArrayList<>();
+        oboeList.add(oboe);
+
+        ArrayList<Instrument> eBClarinetList = new ArrayList<>();
+        eBClarinetList.add(eBClarinet);
+
+        ArrayList<Instrument> fluteList = new ArrayList<>();
+        fluteList.add(flute);
+
+        Player leAnne = new Player("Leanne", "Wistrom", fluteList, Type.CONTRACT);
+        Player seanG = new Player("Sean", "Gabriel", fluteList, Type.CONTRACT);
+        Player sarahH = new Player("Sarah", "Hamilton", eBClarinetList, Type.CONTRACT);
+        Player danna = new Player("Danna", "Sundet", oboeList, Type.CONTRACT);
+        Player heatherS = new Player("Heather", "Storey", oboeList, Type.CONTRACT);
+        Player ami = new Player("Amitai", "Vardi", clarinetList, Type.CONTRACT);
+        Player liesl = new Player("Liesl", "Hook", violinList, Type.SUB);
+        Player jenJ = new Player("Jennifer", "Jansen", violinList, Type.CONTRACT);
+        Player jeffS = new Player("Jeff", "Singler", celloList, Type.CONTRACT);
+        Player jiYoung = new Player("Ji Young", "Nam", violaList, Type.CONTRACT);
 
 
 

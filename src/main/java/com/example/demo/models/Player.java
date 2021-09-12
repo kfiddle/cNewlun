@@ -5,7 +5,9 @@ import com.example.demo.enums.InstrumentEnum;
 import com.example.demo.enums.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Player {
@@ -14,8 +16,8 @@ public class Player {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    private Instrument instrument;
+    @ManyToMany
+    private Collection<Instrument> instruments;
 
     private InstrumentEnum instrumentEnum;
     private Type type;
@@ -53,16 +55,16 @@ public class Player {
         this.email = email;
     }
 
-    public Player(String firstNameArea, String lastName, Instrument instrument) {
+    public Player(String firstNameArea, String lastName, Collection<Instrument> instruments) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
-        this.instrument = instrument;
+        this.instruments = instruments;
     }
 
-    public Player(String firstNameArea, String lastName, Instrument instrument, Type type) {
+    public Player(String firstNameArea, String lastName, Collection<Instrument> instruments, Type type) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
-        this.instrument = instrument;
+        this.instruments = instruments;
         this.type = type;
     }
 
@@ -103,8 +105,8 @@ public class Player {
         this.zip = zip;
     }
 
-    public Player(Instrument instrument, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, Collection<Piece> pieces, Collection<PerformanceId> performanceIds) {
-        this.instrument = instrument;
+    public Player(Collection<Instrument> instruments, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, Collection<Piece> pieces, Collection<PerformanceId> performanceIds) {
+        this.instruments = instruments;
         this.type = type;
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
@@ -188,8 +190,8 @@ public class Player {
         return lastName;
     }
 
-    public Instrument getInstrument() {
-        return instrument;
+    public Collection<Instrument> getInstruments() {
+        return instruments;
     }
 
     public InstrumentEnum getInstrumentEnum() {

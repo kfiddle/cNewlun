@@ -15,7 +15,7 @@ public class Instrument {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "instrument")
+    @ManyToMany()
     private Collection<Player> players;
 
     @ManyToMany
