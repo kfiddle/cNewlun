@@ -68,8 +68,6 @@ public class Player {
         this.type = type;
     }
 
-
-
     public Player(String firstNameArea, String lastName, String email, String cellPhone) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
