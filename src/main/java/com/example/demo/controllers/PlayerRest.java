@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import static com.example.demo.enums.Type.CONTRACT;
+import static com.example.demo.enums.Type.SUB;
 
 @CrossOrigin
 @RestController
@@ -37,9 +38,12 @@ public class PlayerRest {
 
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
-//        return playerRepo.findByType(CONTRACT);
-        return (Collection<Player>) playerRepo.findAll();
+        return playerRepo.findByType(CONTRACT);
+    }
 
+    @RequestMapping("/get-all-sub-players")
+    public Collection<Player> getAllSubPlayers() {
+        return playerRepo.findByType(SUB);
     }
 
 
