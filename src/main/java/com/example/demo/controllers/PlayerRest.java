@@ -2,7 +2,6 @@ package com.example.demo.controllers;
 
 
 import com.example.demo.models.Instrument;
-import com.example.demo.models.PerformanceId;
 import com.example.demo.models.Player;
 import com.example.demo.repositories.InstrumentRepository;
 import com.example.demo.repositories.PerformanceIdRepository;
@@ -61,59 +60,65 @@ public class PlayerRest {
 
         try {
 
-            if (playerRepo.existsByFirstNameArea(incomingPlayer.getFirstNameArea()) && playerRepo.existsByLastName(incomingPlayer.getLastName())) {
-                return (Collection<Player>) playerRepo.findAll();
-            } else if (incomingPlayer.getId() == null) {
-                Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
+            if (incomingPlayer.getId() == null) {
+                if (playerRepo.existsByFirstNameArea(incomingPlayer.getFirstNameArea()) && playerRepo.existsByLastName(incomingPlayer.getLastName())) {
+                    return (Collection<Player>) playerRepo.findAll();
+                } else {
+                    Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
 
-                if (incomingPlayer.getInstruments().size() > 0) {
-                    Collection<Instrument> instrumentsToAdd = new ArrayList<>();
+                    if (incomingPlayer.getInstruments().size() > 0) {
+                        Collection<Instrument> instrumentsToAdd = new ArrayList<>();
 
-                    for (Instrument instrument : incomingPlayer.getInstruments()) {
-                        if (instrumentRepo.findById(instrument.getId()).isPresent()) {
-                            instrumentsToAdd.add(instrument);
+                        for (Instrument instrument : incomingPlayer.getInstruments()) {
+                            if (instrumentRepo.findById(instrument.getId()).isPresent()) {
+                                instrumentsToAdd.add(instrument);
+                            }
                         }
+                        playerToAdd.setInstruments(instrumentsToAdd);
                     }
-                    playerToAdd.setInstruments(instrumentsToAdd);
-                }
 
-                if (incomingPlayer.getEmail() != null) {
-                    playerToAdd.setEmail(incomingPlayer.getEmail());
-                }
+                    if (incomingPlayer.getEmail() != null) {
+                        playerToAdd.setEmail(incomingPlayer.getEmail());
+                    }
 
-                if (incomingPlayer.getHomePhone() != null) {
-                    playerToAdd.setHomePhone(incomingPlayer.getHomePhone());
-                }
+                    if (incomingPlayer.getHomePhone() != null) {
+                        playerToAdd.setHomePhone(incomingPlayer.getHomePhone());
+                    }
 
-                if (incomingPlayer.getCellPhone() != null) {
-                    playerToAdd.setCellPhone(incomingPlayer.getCellPhone());
-                }
+                    if (incomingPlayer.getCellPhone() != null) {
+                        playerToAdd.setCellPhone(incomingPlayer.getCellPhone());
+                    }
 
-                if (incomingPlayer.getAddressLine1() != null) {
-                    playerToAdd.setAddressLine1(incomingPlayer.getAddressLine1());
-                }
+                    if (incomingPlayer.getAddressLine1() != null) {
+                        playerToAdd.setAddressLine1(incomingPlayer.getAddressLine1());
+                    }
 
-                if (incomingPlayer.getAddressLine2() != null) {
-                    playerToAdd.setAddressLine2(incomingPlayer.getAddressLine2());
-                }
+                    if (incomingPlayer.getAddressLine2() != null) {
+                        playerToAdd.setAddressLine2(incomingPlayer.getAddressLine2());
+                    }
 
-                if (incomingPlayer.getCity() != null) {
-                    playerToAdd.setCity(incomingPlayer.getCity());
-                }
+                    if (incomingPlayer.getCity() != null) {
+                        playerToAdd.setCity(incomingPlayer.getCity());
+                    }
 
-                if (incomingPlayer.getState() != null) {
-                    playerToAdd.setState(incomingPlayer.getState());
-                }
+                    if (incomingPlayer.getState() != null) {
+                        playerToAdd.setState(incomingPlayer.getState());
+                    }
 
-                if (incomingPlayer.getZip() != null) {
-                    playerToAdd.setZip(incomingPlayer.getZip());
-                }
+                    if (incomingPlayer.getZip() != null) {
+                        playerToAdd.setZip(incomingPlayer.getZip());
+                    }
 
-                if (incomingPlayer.getType() != null) {
-                    playerToAdd.setType(incomingPlayer.getType());
-                }
+                    if (incomingPlayer.getUnions() != null) {
+                        playerToAdd.setUnions(incomingPlayer.getUnions());
+                    }
 
-                playerRepo.save(playerToAdd);
+                    if (incomingPlayer.getType() != null) {
+                        playerToAdd.setType(incomingPlayer.getType());
+                    }
+
+                    playerRepo.save(playerToAdd);
+                }
             } else if (playerRepo.findById(incomingPlayer.getId()).isPresent()) {
                 Player playerToEdit = playerRepo.findById(incomingPlayer.getId()).get();
 
@@ -131,6 +136,10 @@ public class PlayerRest {
 
                 if (incomingPlayer.getHomePhone() != null) {
                     playerToEdit.setHomePhone(incomingPlayer.getHomePhone());
+                }
+
+                if (incomingPlayer.getCellPhone() != null) {
+                    playerToEdit.setCellPhone(incomingPlayer.getCellPhone());
                 }
 
                 if (incomingPlayer.getAddressLine1() != null) {
@@ -153,6 +162,10 @@ public class PlayerRest {
                     playerToEdit.setZip(incomingPlayer.getZip());
                 }
 
+                if (incomingPlayer.getUnions() != null) {
+                    playerToEdit.setUnions(incomingPlayer.getUnions());
+                }
+
                 if (incomingPlayer.getType() != null) {
                     playerToEdit.setType(incomingPlayer.getType());
                 }
@@ -160,11 +173,137 @@ public class PlayerRest {
                 playerRepo.save(playerToEdit);
 
             }
-        } catch (Exception error) {
+        } catch (
+                Exception error) {
             error.printStackTrace();
         }
         return (Collection<Player>) playerRepo.findAll();
     }
 
-
 }
+
+//        }
+//
+//
+//        if (playerRepo.existsByFirstNameArea(incomingPlayer.getFirstNameArea()) && playerRepo.existsByLastName(incomingPlayer.getLastName())) {
+//            return (Collection<Player>) playerRepo.findAll();
+//        } else if (incomingPlayer.getId() == null) {
+//            Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
+//
+//            if (incomingPlayer.getInstruments().size() > 0) {
+//                Collection<Instrument> instrumentsToAdd = new ArrayList<>();
+//
+//                for (Instrument instrument : incomingPlayer.getInstruments()) {
+//                    if (instrumentRepo.findById(instrument.getId()).isPresent()) {
+//                        instrumentsToAdd.add(instrument);
+//                    }
+//                }
+//                playerToAdd.setInstruments(instrumentsToAdd);
+//            }
+//
+//            if (incomingPlayer.getEmail() != null) {
+//                playerToAdd.setEmail(incomingPlayer.getEmail());
+//            }
+//
+//            if (incomingPlayer.getHomePhone() != null) {
+//                playerToAdd.setHomePhone(incomingPlayer.getHomePhone());
+//            }
+//
+//            if (incomingPlayer.getCellPhone() != null) {
+//                playerToAdd.setCellPhone(incomingPlayer.getCellPhone());
+//            }
+//
+//            if (incomingPlayer.getAddressLine1() != null) {
+//                playerToAdd.setAddressLine1(incomingPlayer.getAddressLine1());
+//            }
+//
+//            if (incomingPlayer.getAddressLine2() != null) {
+//                playerToAdd.setAddressLine2(incomingPlayer.getAddressLine2());
+//            }
+//
+//            if (incomingPlayer.getCity() != null) {
+//                playerToAdd.setCity(incomingPlayer.getCity());
+//            }
+//
+//            if (incomingPlayer.getState() != null) {
+//                playerToAdd.setState(incomingPlayer.getState());
+//            }
+//
+//            if (incomingPlayer.getZip() != null) {
+//                playerToAdd.setZip(incomingPlayer.getZip());
+//            }
+//
+//            if (incomingPlayer.getUnions() != null) {
+//                playerToAdd.setUnions(incomingPlayer.getUnions());
+//            }
+//
+//            if (incomingPlayer.getType() != null) {
+//                playerToAdd.setType(incomingPlayer.getType());
+//            }
+//
+//            playerRepo.save(playerToAdd);
+//        } else if (playerRepo.findById(incomingPlayer.getId()).isPresent()) {
+//            Player playerToEdit = playerRepo.findById(incomingPlayer.getId()).get();
+//
+//            if (incomingPlayer.getFirstNameArea() != null) {
+//                playerToEdit.setFirstNameArea(incomingPlayer.getFirstNameArea());
+//            }
+//
+//            if (incomingPlayer.getLastName() != null) {
+//                playerToEdit.setLastName(incomingPlayer.getLastName());
+//            }
+//
+//            if (incomingPlayer.getEmail() != null) {
+//                playerToEdit.setEmail(incomingPlayer.getEmail());
+//            }
+//
+//            if (incomingPlayer.getHomePhone() != null) {
+//                playerToEdit.setHomePhone(incomingPlayer.getHomePhone());
+//            }
+//
+//            if (incomingPlayer.getCellPhone() != null) {
+//                playerToEdit.setCellPhone(incomingPlayer.getCellPhone());
+//            }
+//
+//            if (incomingPlayer.getAddressLine1() != null) {
+//                playerToEdit.setAddressLine1(incomingPlayer.getAddressLine1());
+//            }
+//
+//            if (incomingPlayer.getAddressLine2() != null) {
+//                playerToEdit.setAddressLine2(incomingPlayer.getAddressLine2());
+//            }
+//
+//            if (incomingPlayer.getCity() != null) {
+//                playerToEdit.setCity(incomingPlayer.getCity());
+//            }
+//
+//            if (incomingPlayer.getState() != null) {
+//                playerToEdit.setState(incomingPlayer.getState());
+//            }
+//
+//            if (incomingPlayer.getZip() != null) {
+//                playerToEdit.setZip(incomingPlayer.getZip());
+//            }
+//
+//            if (incomingPlayer.getUnions() != null) {
+//                playerToEdit.setUnions(incomingPlayer.getUnions());
+//            }
+//
+//            if (incomingPlayer.getType() != null) {
+//                playerToEdit.setType(incomingPlayer.getType());
+//            }
+//
+//            playerRepo.save(playerToEdit);
+//
+//        }
+//    } catch(
+//    Exception error)
+//
+//    {
+//        error.printStackTrace();
+//    }
+//        return(Collection<Player>)playerRepo.findAll();
+//}
+//
+
+//}

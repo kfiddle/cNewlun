@@ -36,6 +36,10 @@ public class Populator implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        Instrument violin = new Instrument("Violin");
+        Instrument viola = new Instrument("Viola");
+        Instrument cello = new Instrument("cello");
+        Instrument bass = new Instrument("Bass");
         Instrument flute = new Instrument("Flute");
         Instrument oboe = new Instrument("Oboe");
         Instrument clarinet = new Instrument("Clarinet");
@@ -48,12 +52,12 @@ public class Populator implements CommandLineRunner {
         Instrument timpani = new Instrument("Timpani");
         Instrument percussion = new Instrument("Percussion");
         Instrument piano = new Instrument("Piano");
-        Instrument violin = new Instrument("Violin");
-        Instrument viola = new Instrument("Viola");
-        Instrument cello = new Instrument("cello");
-        Instrument bass = new Instrument("Bass");
         Instrument harp = new Instrument("Harp");
 
+        instrumentRepo.save(violin);
+        instrumentRepo.save(viola);
+        instrumentRepo.save(cello);
+        instrumentRepo.save(bass);
         instrumentRepo.save(flute);
         instrumentRepo.save(oboe);
         instrumentRepo.save(clarinet);
@@ -66,10 +70,6 @@ public class Populator implements CommandLineRunner {
         instrumentRepo.save(timpani);
         instrumentRepo.save(percussion);
         instrumentRepo.save(piano);
-        instrumentRepo.save(violin);
-        instrumentRepo.save(viola);
-        instrumentRepo.save(cello);
-        instrumentRepo.save(bass);
         instrumentRepo.save(harp);
 
         ArrayList<Instrument> violinList = new ArrayList<>();
@@ -105,7 +105,6 @@ public class Populator implements CommandLineRunner {
         Player jiYoung = new Player("Ji Young", "Nam", violaList, Type.CONTRACT);
 
 
-
         playerRepo.save(leAnne);
         playerRepo.save(seanG);
         playerRepo.save(sarahH);
@@ -135,9 +134,6 @@ public class Populator implements CommandLineRunner {
 
         pulcinella.setInstruments(stringsPlayers);
         pieceRepo.save(pulcinella);
-
-
-
 
 
     }

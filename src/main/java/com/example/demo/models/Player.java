@@ -35,6 +35,9 @@ public class Player {
     private String state;
     private String zip;
 
+    private String unions;
+
+
     @ManyToMany
     private Collection<Piece> pieces;
 
@@ -172,6 +175,10 @@ public class Player {
         this.type = type;
     }
 
+    public void setUnions(String unions) {
+        this.unions = unions;
+    }
+
     public void setPieces(Collection<Piece> pieces) {
         this.pieces = pieces;
     }
@@ -204,13 +211,6 @@ public class Player {
         return type;
     }
 
-    public Collection<Piece> getPieces() {
-        return pieces;
-    }
-
-    public Collection<PerformanceId> getPerformanceIds() {
-        return performanceIds;
-    }
 
     public String getEmail() {
         return email;
@@ -245,6 +245,15 @@ public class Player {
     }
 
 
+    public String getUnions() {
+        return unions;
+    }
 
+    public Collection<Piece> getPieces() {
+        return pieces;
+    }
 
+    public Collection<PerformanceId> getPerformanceIds() {
+        return performanceIds;
+    }
 }
