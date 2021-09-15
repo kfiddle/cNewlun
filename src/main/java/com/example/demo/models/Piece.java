@@ -5,13 +5,14 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-public class Piece {
+public class Piece implements Comparable<Piece>{
 
     @Id
     @GeneratedValue
     private Long id;
 
     private String title;
+    private String composer;
 
     @ManyToOne
     private Performance performance;
@@ -24,6 +25,11 @@ public class Piece {
 
     public Piece(String title) {
         this.title = title;
+    }
+
+    public Piece(String title, String composer) {
+        this.title = title;
+        this.composer = composer;
     }
 
     public void setPerformance(Performance performance) {
@@ -42,11 +48,20 @@ public class Piece {
         return title;
     }
 
+    public String getComposer() {
+        return composer;
+    }
+
     public Performance getPerformance() {
         return performance;
     }
 
     public Collection<Instrument> getInstruments() {
         return instruments;
+    }
+
+    @Override
+    public int compareTo(Piece otherPiece) {
+        return composer.compareTo(otherPiece.getComposer());
     }
 }

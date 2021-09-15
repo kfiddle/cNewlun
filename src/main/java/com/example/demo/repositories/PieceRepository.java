@@ -5,4 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface PieceRepository extends CrudRepository<Piece, Long> {
 
+    boolean existsByTitle(String title);
+
+    boolean existsByComposer(String composer);
 }
