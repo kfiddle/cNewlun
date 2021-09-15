@@ -30,7 +30,7 @@ public class PlayerRest {
     PerformanceIdRepository performanceIdRepo;
 
 
-    @RequestMapping("get-all-players")
+    @RequestMapping("/get-all-players")
     public Collection<Player> getAllPlayers() {
         return (Collection<Player>) playerRepo.findAll();
     }
@@ -47,7 +47,7 @@ public class PlayerRest {
 
 
     @PostMapping("/delete-player")
-    public Collection<Player> deleteGameFromDatabase(@RequestBody Player playerToDelete) throws IOException {
+    public Collection<Player> deletePlayerFromDatabase(@RequestBody Player playerToDelete) throws IOException {
 
         if (playerRepo.existsById(playerToDelete.getId())) {
             playerRepo.deleteById(playerToDelete.getId());
@@ -56,7 +56,7 @@ public class PlayerRest {
     }
 
     @PostMapping("/add-player")
-    public Collection<Player> addPayeeToDatabase(@RequestBody Player incomingPlayer) throws IOException {
+    public Collection<Player> addPlayerToDatabase(@RequestBody Player incomingPlayer) throws IOException {
 
         try {
 

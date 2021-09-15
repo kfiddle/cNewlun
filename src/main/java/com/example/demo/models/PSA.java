@@ -12,8 +12,6 @@ public class PSA {
     @GeneratedValue
     private Long id;
 
-
-
     public PSA() {}
 
 }
