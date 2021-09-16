@@ -14,6 +14,9 @@ public class Piece implements Comparable<Piece> {
     private String title;
     private String composer;
 
+    @OneToOne
+    private Orchestration orchestration;
+
     @ManyToOne
     private Performance performance;
 
@@ -35,6 +38,18 @@ public class Piece implements Comparable<Piece> {
 
     public void setPerformance(Performance performance) {
       this.performance = performance;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setComposer(String composer) {
+        this.composer = composer;
+    }
+
+    public void setOrchestration(Orchestration orchestration) {
+        this.orchestration = orchestration;
     }
 
     public void setInstruments(Collection<Instrument> instruments) {
@@ -59,6 +74,14 @@ public class Piece implements Comparable<Piece> {
 
     public Collection<Instrument> getInstruments() {
         return instruments;
+    }
+
+    public Orchestration getOrchestration() {
+        return orchestration;
+    }
+
+    public Performance getPerformance() {
+        return performance;
     }
 
     @Override

@@ -160,11 +160,10 @@ public class Populator implements CommandLineRunner {
         Piece pulcinella = new Piece("Pulcinella");
         Piece beeth6 = new Piece("Beethoven Symphony 6");
 
-        Piece stringsPiece2 = new Piece("Strings Piece2");
-        Piece windsPiece2 = new Piece("Winds Only2");
-        Piece fullGroup2 = new Piece("Huge Symphony2");
-        Piece pulcinella2 = new Piece("pulce 2");
-        Piece beeth4 = new Piece("Beethoven Symphony 4");
+        Piece rousePiece = new Piece("Rouse Piece", "Rouse");
+        Piece brahms= new Piece("Brahms 2", "Brahms");
+        Piece pulcinella2 = new Piece("pulce 2", "Stravinsky");
+
 
         Piece stringsPiece3 = new Piece("Strings Piece3");
         Piece windsPiece3 = new Piece("Winds Only3");
@@ -177,10 +176,8 @@ public class Populator implements CommandLineRunner {
         stringsPlayers.add(violin);
 
         pieceRepo.save(pulcinella2);
-        pieceRepo.save(fullGroup2);
-        pieceRepo.save(stringsPiece2);
-        pieceRepo.save(windsPiece2);
-        pieceRepo.save(beeth4);
+        pieceRepo.save(rousePiece);
+        pieceRepo.save(brahms);
 
         pieceRepo.save(pulcinella3);
         pieceRepo.save(fullGroup3);
@@ -209,9 +206,8 @@ public class Populator implements CommandLineRunner {
 
         Collection<Piece> piecesForPops1 = new ArrayList<>();
         piecesForPops1.add(pulcinella2);
-        piecesForPops1.add(fullGroup2);
-        piecesForPops1.add(stringsPiece2);
-        piecesForPops1.add(beeth4);
+        piecesForPops1.add(rousePiece);
+        piecesForPops1.add(brahms);
 
         Collection<Piece> piecesForMessiah = new ArrayList<>();
         piecesForMessiah.add(pulcinella3);
