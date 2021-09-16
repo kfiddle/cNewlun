@@ -160,9 +160,33 @@ public class Populator implements CommandLineRunner {
         Piece pulcinella = new Piece("Pulcinella");
         Piece beeth6 = new Piece("Beethoven Symphony 6");
 
+        Piece stringsPiece2 = new Piece("Strings Piece2");
+        Piece windsPiece2 = new Piece("Winds Only2");
+        Piece fullGroup2 = new Piece("Huge Symphony2");
+        Piece pulcinella2 = new Piece("pulce 2");
+        Piece beeth4 = new Piece("Beethoven Symphony 4");
+
+        Piece stringsPiece3 = new Piece("Strings Piece3");
+        Piece windsPiece3 = new Piece("Winds Only3");
+        Piece fullGroup3 = new Piece("Huge Symphony3");
+        Piece pulcinella3 = new Piece("pulce 3");
+        Piece beeth3 = new Piece("Beethoven Symphony 3");
+
         Collection<Instrument> stringsPlayers = new ArrayList<>();
         stringsPlayers.add(violin);
         stringsPlayers.add(violin);
+
+        pieceRepo.save(pulcinella2);
+        pieceRepo.save(fullGroup2);
+        pieceRepo.save(stringsPiece2);
+        pieceRepo.save(windsPiece2);
+        pieceRepo.save(beeth4);
+
+        pieceRepo.save(pulcinella3);
+        pieceRepo.save(fullGroup3);
+        pieceRepo.save(stringsPiece3);
+        pieceRepo.save(windsPiece3);
+        pieceRepo.save(beeth3);
 
         pieceRepo.save(pulcinella);
         pieceRepo.save(fullGroup);
@@ -183,6 +207,18 @@ public class Populator implements CommandLineRunner {
         piecesForSym1.add(stringsPiece);
         piecesForSym1.add(beeth6);
 
+        Collection<Piece> piecesForPops1 = new ArrayList<>();
+        piecesForPops1.add(pulcinella2);
+        piecesForPops1.add(fullGroup2);
+        piecesForPops1.add(stringsPiece2);
+        piecesForPops1.add(beeth4);
+
+        Collection<Piece> piecesForMessiah = new ArrayList<>();
+        piecesForMessiah.add(pulcinella3);
+        piecesForMessiah.add(fullGroup3);
+        piecesForMessiah.add(stringsPiece3);
+        piecesForMessiah.add(beeth3);
+
         performanceRepo.save(sym1);
         performanceRepo.save(pops1);
         performanceRepo.save(messiah);
@@ -193,11 +229,12 @@ public class Populator implements CommandLineRunner {
         pieceRepo.save(windsPiece);
 
         sym1.setPieces(piecesForSym1);
+        pops1.setPieces(piecesForPops1);
+        messiah.setPieces(piecesForMessiah);
+
         performanceRepo.save(sym1);
-        System.out.println(sym1.getPieces().size());
-
-
-
+        performanceRepo.save(pops1);
+        performanceRepo.save(messiah);
 
     }
 }
