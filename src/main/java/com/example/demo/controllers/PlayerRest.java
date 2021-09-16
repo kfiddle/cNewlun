@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.enums.InstrumentEnum;
 import com.example.demo.models.Instrument;
 import com.example.demo.models.Player;
 import com.example.demo.repositories.InstrumentRepository;
@@ -44,11 +45,12 @@ public class PlayerRest {
 
     @RequestMapping("/get-all-sub-players")
     public Collection<Player> getAllSubPlayers() {
-//        return playerRepo.findByType(SUB);
-//        return playerRepo.findAll(Sort.by("subRanking", "lastName"));
         return playerRepo.findByType(SUB, Sort.by("subRanking", "lastName"));
+    }
 
-
+    @RequestMapping("/subs/{instrument}")
+    public Collection<Player> getSubsOfSpecifiedInstrument(@PathVariable InstrumentEnum instrument) {
+        return playerRepo.findByTypeAndInstrumentEnum(SUB, instrument, Sort.by("subRanking", "lastName"));
     }
 
 

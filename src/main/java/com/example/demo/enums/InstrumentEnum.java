@@ -13,6 +13,7 @@ public enum InstrumentEnum {
     PERCUSSION("Percussion"),
     HARP("Harp"),
     KEYBOARD("Keyboard"),
+    VIOLIN("Violin"),
     VIOLIN1("Violin 1"),
     VIOLIN2("Violin 2"),
     VIOLA("Viola"),

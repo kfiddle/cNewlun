@@ -1,5 +1,6 @@
 package com.example.demo.repositories;
 
+import com.example.demo.enums.InstrumentEnum;
 import com.example.demo.enums.Type;
 import com.example.demo.models.Player;
 import org.springframework.data.domain.Sort;
@@ -15,4 +16,5 @@ public interface PlayerRepository extends CrudRepository<Player, Long> {
 
     Collection<Player> findAll(Sort sort);
 
+    Collection<Player> findByTypeAndInstrumentEnum(Type sub, InstrumentEnum instrument, Sort by);
 }

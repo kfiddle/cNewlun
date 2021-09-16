@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.enums.InstrumentEnum;
 import com.example.demo.enums.Type;
 import com.example.demo.models.Instrument;
 import com.example.demo.models.Performance;
@@ -108,20 +109,39 @@ public class Populator implements CommandLineRunner {
         Player mariaV = new Player("Maria", "Vinas", violinList, Type.SUB);
         Player gingerV = new Player("Ginger", "Winas", violinList, Type.SUB);
         Player beano = new Player("Bean", "Pasta", violinList, Type.SUB);
+        Player gracie = new Player("Grace", "Pasta", violinList, Type.SUB);
+        Player doodle = new Player("Doodle", "Pasta", violinList, Type.SUB);
+        Player nHess = new Player("Nate", "Hess", violinList, Type.SUB);
 
         playerRepo.save(mariaV);
         playerRepo.save(gingerV);
         playerRepo.save(beano);
+        playerRepo.save(gracie);
+        playerRepo.save(doodle);
+        playerRepo.save(nHess);
 
         mariaV.setSubRanking(1);
         gingerV.setSubRanking(3);
         beano.setSubRanking(5);
-        liesl.setSubRanking(4);
+        gracie.setSubRanking(1);
+        doodle.setSubRanking(4);
+        nHess.setSubRanking(8);
+
+        mariaV.setInstrumentEnum(InstrumentEnum.VIOLIN);
+        gingerV.setInstrumentEnum(InstrumentEnum.VIOLIN);
+        beano.setInstrumentEnum(InstrumentEnum.VIOLIN);
+        liesl.setInstrumentEnum(InstrumentEnum.VIOLIN);
+        gracie.setInstrumentEnum(InstrumentEnum.VIOLIN);
+        doodle.setInstrumentEnum(InstrumentEnum.HORN);
+        liesl.setInstrumentEnum(InstrumentEnum.CLARINET);
 
         playerRepo.save(mariaV);
         playerRepo.save(gingerV);
         playerRepo.save(beano);
         playerRepo.save(liesl);
+        playerRepo.save(gracie);
+        playerRepo.save(doodle);
+        playerRepo.save(nHess);
 
         playerRepo.save(leAnne);
         playerRepo.save(seanG);
