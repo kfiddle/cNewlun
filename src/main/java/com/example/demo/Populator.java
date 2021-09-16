@@ -14,6 +14,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -152,6 +153,13 @@ public class Populator implements CommandLineRunner {
         pulcinella.setInstruments(stringsPlayers);
         pieceRepo.save(pulcinella);
 
+        Performance sym1 = new Performance("Sym 1", LocalDate.now());
+        Performance pops1 = new Performance("Pops 1", LocalDate.of(2021, 10, 21));
+        Performance messiah = new Performance("Messiah", LocalDate.of(2021, 12, 10));
+
+        performanceRepo.save(sym1);
+        performanceRepo.save(pops1);
+        performanceRepo.save(messiah);
 
     }
 }
