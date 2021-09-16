@@ -104,6 +104,23 @@ public class Populator implements CommandLineRunner {
         Player jeffS = new Player("Jeff", "Singler", celloList, Type.CONTRACT);
         Player jiYoung = new Player("Ji Young", "Nam", violaList, Type.CONTRACT);
 
+        Player mariaV = new Player("Maria", "Vinas", violinList, Type.SUB);
+        Player gingerV = new Player("Ginger", "Winas", violinList, Type.SUB);
+        Player beano = new Player("Bean", "Pasta", violinList, Type.SUB);
+
+        playerRepo.save(mariaV);
+        playerRepo.save(gingerV);
+        playerRepo.save(beano);
+
+        mariaV.setSubRanking(1);
+        gingerV.setSubRanking(3);
+        beano.setSubRanking(5);
+        liesl.setSubRanking(4);
+
+        playerRepo.save(mariaV);
+        playerRepo.save(gingerV);
+        playerRepo.save(beano);
+        playerRepo.save(liesl);
 
         playerRepo.save(leAnne);
         playerRepo.save(seanG);

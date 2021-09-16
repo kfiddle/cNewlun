@@ -6,7 +6,6 @@ import com.example.demo.models.Player;
 import com.example.demo.repositories.InstrumentRepository;
 import com.example.demo.repositories.PerformanceIdRepository;
 import com.example.demo.repositories.PlayerRepository;
-import org.hibernate.criterion.Order;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,14 +38,16 @@ public class PlayerRest {
 
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
-        return playerRepo.findByType(CONTRACT);
+        return playerRepo.findByType(CONTRACT, Sort.by("subRanking", "lastName"));
 
     }
 
     @RequestMapping("/get-all-sub-players")
     public Collection<Player> getAllSubPlayers() {
 //        return playerRepo.findByType(SUB);
-        return playerRepo.findAll(Sort.by("subRanking", "lastName"));
+//        return playerRepo.findAll(Sort.by("subRanking", "lastName"));
+        return playerRepo.findByType(SUB, Sort.by("subRanking", "lastName"));
+
 
     }
 
