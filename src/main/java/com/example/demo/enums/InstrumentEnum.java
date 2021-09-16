@@ -4,6 +4,7 @@ public enum InstrumentEnum {
     FLUTE("Flute"),
     OBOE("Oboe"),
     CLARINET("Clarinet"),
+    EBCLARINET("Eb Clarinet"),
     BASSOON("Bassoon"),
     HORN("Horn"),
     TRUMPET("Trumpet"),
@@ -18,6 +19,7 @@ public enum InstrumentEnum {
     VIOLIN2("Violin 2"),
     VIOLA("Viola"),
     CELLO("Cello"),
+    PIANO("Piano"),
     BASS("Bass");
 
     private final String stringVersion;

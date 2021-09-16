@@ -1,10 +1,12 @@
 package com.example.demo.models;
 
 
+import com.example.demo.enums.InstrumentEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Locale;
 
 @Entity
 public class Instrument {
@@ -13,6 +15,7 @@ public class Instrument {
     @GeneratedValue
     private Long id;
     private String name;
+    private InstrumentEnum instrumentEnum;
 
     @JsonIgnore
     @ManyToMany()
@@ -28,12 +31,21 @@ public class Instrument {
         this.name = name;
     }
 
+    public Instrument(String name, InstrumentEnum instrumentEnum) {
+        this.name = name;
+        this.instrumentEnum = instrumentEnum;
+    }
+
     public Long getId() {
         return id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public InstrumentEnum getInstrumentEnum() {
+        return instrumentEnum;
     }
 
     public Collection<Player> getPlayers() {

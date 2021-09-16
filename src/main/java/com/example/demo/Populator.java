@@ -38,23 +38,23 @@ public class Populator implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Instrument violin = new Instrument("Violin");
-        Instrument viola = new Instrument("Viola");
-        Instrument cello = new Instrument("cello");
-        Instrument bass = new Instrument("Bass");
-        Instrument flute = new Instrument("Flute");
-        Instrument oboe = new Instrument("Oboe");
-        Instrument clarinet = new Instrument("Clarinet");
-        Instrument eBClarinet = new Instrument("Eb Clarinet");
-        Instrument bassoon = new Instrument("Bassoon");
-        Instrument horn = new Instrument("Horn");
-        Instrument trumpet = new Instrument("Trumpet");
-        Instrument trombone = new Instrument("Trombone");
-        Instrument tuba = new Instrument("Tuba");
-        Instrument timpani = new Instrument("Timpani");
-        Instrument percussion = new Instrument("Percussion");
-        Instrument piano = new Instrument("Piano");
-        Instrument harp = new Instrument("Harp");
+        Instrument violin = new Instrument("Violin", InstrumentEnum.VIOLIN);
+        Instrument viola = new Instrument("Viola", InstrumentEnum.VIOLA);
+        Instrument cello = new Instrument("cello", InstrumentEnum.CELLO);
+        Instrument bass = new Instrument("Bass", InstrumentEnum.BASS);
+        Instrument flute = new Instrument("Flute", InstrumentEnum.FLUTE);
+        Instrument oboe = new Instrument("Oboe", InstrumentEnum.OBOE);
+        Instrument clarinet = new Instrument("Clarinet", InstrumentEnum.CLARINET);
+        Instrument eBClarinet = new Instrument("Eb Clarinet", InstrumentEnum.EBCLARINET);
+        Instrument bassoon = new Instrument("Bassoon", InstrumentEnum.BASSOON);
+        Instrument horn = new Instrument("Horn", InstrumentEnum.HORN);
+        Instrument trumpet = new Instrument("Trumpet", InstrumentEnum.TRUMPET);
+        Instrument trombone = new Instrument("Trombone", InstrumentEnum.TROMBONE);
+        Instrument tuba = new Instrument("Tuba", InstrumentEnum.TUBA);
+        Instrument timpani = new Instrument("Timpani", InstrumentEnum.TIMPANI);
+        Instrument percussion = new Instrument("Percussion", InstrumentEnum.PERCUSSION);
+        Instrument piano = new Instrument("Piano", InstrumentEnum.PIANO);
+        Instrument harp = new Instrument("Harp", InstrumentEnum.HARP);
 
         instrumentRepo.save(violin);
         instrumentRepo.save(viola);

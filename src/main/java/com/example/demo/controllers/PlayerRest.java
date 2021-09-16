@@ -50,6 +50,7 @@ public class PlayerRest {
 
     @RequestMapping("/subs/{instrument}")
     public Collection<Player> getSubsOfSpecifiedInstrument(@PathVariable InstrumentEnum instrument) {
+
         return playerRepo.findByTypeAndInstrumentEnum(SUB, instrument, Sort.by("subRanking", "lastName"));
     }
 

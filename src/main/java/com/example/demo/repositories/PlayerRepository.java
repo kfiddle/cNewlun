@@ -2,6 +2,7 @@ package com.example.demo.repositories;
 
 import com.example.demo.enums.InstrumentEnum;
 import com.example.demo.enums.Type;
+import com.example.demo.models.Instrument;
 import com.example.demo.models.Player;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
