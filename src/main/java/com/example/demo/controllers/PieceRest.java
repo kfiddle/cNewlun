@@ -50,6 +50,7 @@ public class PieceRest {
         if (!pieceRepo.existsByTitle(pieceToAdd.getTitle()) && !pieceRepo.existsByComposer(pieceToAdd.getComposer())) {
             Piece newPiece = new Piece(pieceToAdd.getTitle(), pieceToAdd.getComposer());
             pieceRepo.save(newPiece);
+            System.out.println(newPiece.getComposer() + "    " + newPiece.getTitle());
         }
         return (Collection<Piece>) pieceRepo.findAll();
 

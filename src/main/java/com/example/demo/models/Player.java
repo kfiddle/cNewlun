@@ -7,6 +7,7 @@ import com.example.demo.enums.Type;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 @Entity
@@ -36,6 +37,7 @@ public class Player {
     private String zip;
 
     private String unions;
+    private int subRanking;
 
 
     @ManyToMany
@@ -187,6 +189,10 @@ public class Player {
         this.performanceIds = performanceIds;
     }
 
+    public void setSubRanking(int subRanking) {
+        this.subRanking = subRanking;
+    }
+
     public Long getId() {
         return id;
     }
@@ -249,6 +255,10 @@ public class Player {
         return unions;
     }
 
+    public int getSubRanking() {
+        return subRanking;
+    }
+
     public Collection<Piece> getPieces() {
         return pieces;
     }
@@ -256,4 +266,6 @@ public class Player {
     public Collection<PerformanceId> getPerformanceIds() {
         return performanceIds;
     }
+
+
 }

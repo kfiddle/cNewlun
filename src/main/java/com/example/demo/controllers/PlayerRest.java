@@ -6,6 +6,8 @@ import com.example.demo.models.Player;
 import com.example.demo.repositories.InstrumentRepository;
 import com.example.demo.repositories.PerformanceIdRepository;
 import com.example.demo.repositories.PlayerRepository;
+import org.hibernate.criterion.Order;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -38,11 +40,14 @@ public class PlayerRest {
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
         return playerRepo.findByType(CONTRACT);
+
     }
 
     @RequestMapping("/get-all-sub-players")
     public Collection<Player> getAllSubPlayers() {
-        return playerRepo.findByType(SUB);
+//        return playerRepo.findByType(SUB);
+        return playerRepo.findAll(Sort.by("subRanking", "lastName"));
+
     }
 
 
@@ -61,7 +66,9 @@ public class PlayerRest {
         try {
 
             if (incomingPlayer.getId() == null) {
-                if (playerRepo.existsByFirstNameArea(incomingPlayer.getFirstNameArea()) && playerRepo.existsByLastName(incomingPlayer.getLastName())) {
+
+
+                if (playerRepo.existsByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName())) {
                     return (Collection<Player>) playerRepo.findAll();
                 } else {
                     Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
