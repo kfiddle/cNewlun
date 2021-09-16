@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-public class Piece implements Comparable<Piece>{
+public class Piece implements Comparable<Piece> {
 
     @Id
     @GeneratedValue
@@ -16,6 +16,7 @@ public class Piece implements Comparable<Piece>{
 
     @ManyToOne
     private Performance performance;
+
 
     @ManyToMany
     private Collection<Instrument> instruments;
@@ -33,7 +34,7 @@ public class Piece implements Comparable<Piece>{
     }
 
     public void setPerformance(Performance performance) {
-        this.performance = performance;
+      this.performance = performance;
     }
 
     public void setInstruments(Collection<Instrument> instruments) {
@@ -52,9 +53,9 @@ public class Piece implements Comparable<Piece>{
         return composer;
     }
 
-    public Performance getPerformance() {
-        return performance;
-    }
+//    public Performance getPerformance() {
+//        return performance;
+//    }
 
     public Collection<Instrument> getInstruments() {
         return instruments;

@@ -17,7 +17,7 @@ public class Performance implements Comparable<Performance> {
     private String title;
     private LocalDate date;
 
-    @OneToMany(mappedBy = "performance")
+    @OneToMany()
     private Collection<Piece> pieces;
 
     public Performance() {

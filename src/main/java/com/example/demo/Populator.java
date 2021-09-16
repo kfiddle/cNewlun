@@ -158,17 +158,17 @@ public class Populator implements CommandLineRunner {
         Piece windsPiece = new Piece("Winds Only");
         Piece fullGroup = new Piece("Huge Symphony");
         Piece pulcinella = new Piece("Pulcinella");
+        Piece beeth6 = new Piece("Beethoven Symphony 6");
 
         Collection<Instrument> stringsPlayers = new ArrayList<>();
         stringsPlayers.add(violin);
         stringsPlayers.add(violin);
-        System.out.println(stringsPlayers.size());
-
-
-        Performance firstShow = new Performance("First show");
-        Performance secondShow = new Performance("Second show");
 
         pieceRepo.save(pulcinella);
+        pieceRepo.save(fullGroup);
+        pieceRepo.save(stringsPiece);
+        pieceRepo.save(windsPiece);
+        pieceRepo.save(beeth6);
 
         pulcinella.setInstruments(stringsPlayers);
         pieceRepo.save(pulcinella);
@@ -177,9 +177,27 @@ public class Populator implements CommandLineRunner {
         Performance pops1 = new Performance("Pops 1", LocalDate.of(2021, 10, 21));
         Performance messiah = new Performance("Messiah", LocalDate.of(2021, 12, 10));
 
+        Collection<Piece> piecesForSym1 = new ArrayList<>();
+        piecesForSym1.add(pulcinella);
+        piecesForSym1.add(fullGroup);
+        piecesForSym1.add(stringsPiece);
+        piecesForSym1.add(beeth6);
+
         performanceRepo.save(sym1);
         performanceRepo.save(pops1);
         performanceRepo.save(messiah);
+
+        pieceRepo.save(pulcinella);
+        pieceRepo.save(fullGroup);
+        pieceRepo.save(stringsPiece);
+        pieceRepo.save(windsPiece);
+
+        sym1.setPieces(piecesForSym1);
+        performanceRepo.save(sym1);
+        System.out.println(sym1.getPieces().size());
+
+
+
 
     }
 }

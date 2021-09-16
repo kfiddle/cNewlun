@@ -1,8 +1,10 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Performance;
+import com.example.demo.models.Piece;
 import com.example.demo.models.Player;
 import com.example.demo.repositories.PerformanceRepository;
+import com.example.demo.repositories.PieceRepository;
 import com.example.demo.repositories.PlayerRepository;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,9 @@ public class PerformanceRest {
 
     @Resource
     PerformanceRepository performanceRepo;
+
+    @Resource
+    PieceRepository pieceRepo;
 
     @Resource
     PlayerRepository playerRepo;
@@ -57,8 +62,6 @@ public class PerformanceRest {
                 }
 
                 performanceRepo.save(newPerformance);
-
-
             }
 
         } catch (
@@ -67,7 +70,34 @@ public class PerformanceRest {
 
         }
         return (Collection<Performance>) performanceRepo.findAll();
-
-
     }
+
+    @PostMapping("/get-pieces-from-performance")
+    public Collection<Piece> getPiecesInAPerformance(@RequestBody Performance incomingPerformance) throws IOException {
+        Collection<Piece> piecesToReturn = new ArrayList<>();
+
+        try {
+            Performance foundPerformance = performanceRepo.findById(incomingPerformance.getId()).get();
+            piecesToReturn.addAll(foundPerformance.getPieces());
+
+        } catch (
+                Exception error) {
+            error.printStackTrace();
+        }
+        return piecesToReturn;
+    }
+
+//        try {
+//            if (performanceRepo.findById(incomingPerformance.getId()).isPresent()) {
+//                Performance performanceToSearch = performanceRepo.findById(incomingPerformance.getId()).get();
+//                return performanceToSearch.getPieces();
+//            }
+//
+//
+//
+//        } catch (
+//                Exception error) {
+//            error.printStackTrace();
+//        }
+
 }
