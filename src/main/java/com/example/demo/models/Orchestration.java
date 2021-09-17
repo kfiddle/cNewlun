@@ -2,11 +2,15 @@ package com.example.demo.models;
 
 
 import org.aspectj.weaver.ast.Or;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.util.Collection;
+import java.util.Map;
 
 @Entity
 public class Orchestration {
@@ -42,6 +46,10 @@ public class Orchestration {
     private Piece piece;
 
     public Orchestration() {
+    }
+
+    public Orchestration(Piece piece) {
+        this.piece = piece;
     }
 
     public void setFirstViolins(int firstViolins) {

@@ -6,6 +6,7 @@ import com.example.demo.models.Player;
 import com.example.demo.repositories.PerformanceRepository;
 import com.example.demo.repositories.PieceRepository;
 import com.example.demo.repositories.PlayerRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,13 +32,7 @@ public class PerformanceRest {
 
     @RequestMapping("/get-all-performances")
     public Collection<Performance> getAllPerformances() {
-        List<Performance> performancesToSend = new ArrayList<>();
-        for (Performance performance : performanceRepo.findAll()) {
-            performancesToSend.add(performance);
-        }
-        Collections.sort(performancesToSend);
-
-        return performancesToSend;
+        return performanceRepo.findAll(Sort.by("date"));
     }
 
     @PostMapping("/delete-performance")

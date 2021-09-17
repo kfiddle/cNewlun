@@ -197,6 +197,7 @@ public class Populator implements CommandLineRunner {
         Performance sym1 = new Performance("Sym 1", LocalDate.now());
         Performance pops1 = new Performance("Pops 1", LocalDate.of(2021, 10, 21));
         Performance messiah = new Performance("Messiah", LocalDate.of(2021, 12, 10));
+        Performance sym2 = new Performance("Sym 2", LocalDate.of(2021, 10, 25));
 
         Collection<Piece> piecesForSym1 = new ArrayList<>();
         piecesForSym1.add(pulcinella);
@@ -218,6 +219,7 @@ public class Populator implements CommandLineRunner {
         performanceRepo.save(sym1);
         performanceRepo.save(pops1);
         performanceRepo.save(messiah);
+        performanceRepo.save(sym2);
 
         pieceRepo.save(pulcinella);
         pieceRepo.save(fullGroup);
