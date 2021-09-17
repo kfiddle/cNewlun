@@ -52,6 +52,28 @@ public class Orchestration {
         this.piece = piece;
     }
 
+    public Orchestration(int firstViolins, int secondViolins, int violas, int cellos, int basses, int flutes, int oboes, int clarinets, int ebClarinets, int bassoons, int horns, int trumpets, int trombones, int tubas, int timpanis, int percussions, int pianos, int harps, Piece piece) {
+        this.firstViolins = firstViolins;
+        this.secondViolins = secondViolins;
+        this.violas = violas;
+        this.cellos = cellos;
+        this.basses = basses;
+        this.flutes = flutes;
+        this.oboes = oboes;
+        this.clarinets = clarinets;
+        this.ebClarinets = ebClarinets;
+        this.bassoons = bassoons;
+        this.horns = horns;
+        this.trumpets = trumpets;
+        this.trombones = trombones;
+        this.tubas = tubas;
+        this.timpanis = timpanis;
+        this.percussions = percussions;
+        this.pianos = pianos;
+        this.harps = harps;
+        this.piece = piece;
+    }
+
     public void setFirstViolins(int firstViolins) {
         this.firstViolins = firstViolins;
     }

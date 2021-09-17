@@ -7,10 +7,7 @@ import com.example.demo.models.Player;
 import com.example.demo.repositories.OrchestrationRepository;
 import com.example.demo.repositories.PieceRepository;
 import org.aspectj.weaver.ast.Or;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -26,19 +23,27 @@ public class OrchestrationRest {
     @Resource
     PieceRepository pieceRepo;
 
+    @RequestMapping("/get-all-orchestrations")
+    public Collection<Orchestration> getAllOrchestrations() {
+        return (Collection<Orchestration>) orchestrationRepo.findAll();
+    }
+
     @PostMapping("/add-orchestration")
     public Collection<Orchestration> addOrchestrationToDatabase(@RequestBody Orchestration incomingOrchestration) throws IOException {
 
         try {
 
-            if (orchestrationRepo.findById(incomingOrchestration.getId()).isEmpty()) {
+            if (incomingOrchestration.getId() == null) {
                 Orchestration orchestrationToAdd = new Orchestration(incomingOrchestration.getPiece());
 
                 if (incomingOrchestration.getFirstViolins() > 0) {
                     orchestrationToAdd.setFirstViolins(incomingOrchestration.getFirstViolins());
+                    System.out.println(incomingOrchestration.getFirstViolins() + " firsts");
                 }
                 if (incomingOrchestration.getSecondViolins() > 0) {
                     orchestrationToAdd.setSecondViolins(incomingOrchestration.getSecondViolins());
+                    System.out.println(incomingOrchestration.getSecondViolins() + " seconds");
+
                 }
                 if (incomingOrchestration.getViolas() > 0) {
                     orchestrationToAdd.setViolas(incomingOrchestration.getViolas());
@@ -88,8 +93,8 @@ public class OrchestrationRest {
                 if (incomingOrchestration.getPianos() > 0) {
                     orchestrationToAdd.setPianos(incomingOrchestration.getPianos());
                 }
+                System.out.println("hello");
                 orchestrationRepo.save(orchestrationToAdd);
-                System.out.println(orchestrationToAdd.getPiece().getTitle() + "   " + orchestrationToAdd.getFirstViolins());
             }
 
         } catch (
@@ -97,6 +102,7 @@ public class OrchestrationRest {
             error.printStackTrace();
 
         }
+
         return (Collection<Orchestration>) orchestrationRepo.findAll();
 
     }
