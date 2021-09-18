@@ -2,14 +2,8 @@ package com.example.demo;
 
 import com.example.demo.enums.InstrumentEnum;
 import com.example.demo.enums.Type;
-import com.example.demo.models.Instrument;
-import com.example.demo.models.Performance;
-import com.example.demo.models.Piece;
-import com.example.demo.models.Player;
-import com.example.demo.repositories.InstrumentRepository;
-import com.example.demo.repositories.PerformanceRepository;
-import com.example.demo.repositories.PieceRepository;
-import com.example.demo.repositories.PlayerRepository;
+import com.example.demo.models.*;
+import com.example.demo.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
@@ -27,6 +21,9 @@ public class Populator implements CommandLineRunner {
 
     @Resource
     InstrumentRepository instrumentRepo;
+
+    @Resource
+    InstrumentNumberRepository instrumentNumberRepo;
 
     @Resource
     PieceRepository pieceRepo;
@@ -161,7 +158,7 @@ public class Populator implements CommandLineRunner {
         Piece beeth6 = new Piece("Beethoven Symphony 6");
 
         Piece rousePiece = new Piece("Rouse Piece", "Rouse");
-        Piece brahms= new Piece("Brahms 2", "Brahms");
+        Piece brahms = new Piece("Brahms 2", "Brahms");
         Piece pulcinella2 = new Piece("pulce 2", "Stravinsky");
 
 
@@ -233,6 +230,27 @@ public class Populator implements CommandLineRunner {
         performanceRepo.save(sym1);
         performanceRepo.save(pops1);
         performanceRepo.save(messiah);
+
+        Collection<InstrumentNumber> instrumentNumbersToAdd = new ArrayList<>();
+        Collection<InstrumentNumber> instrumentNumbersToAdd2 = new ArrayList<>();
+
+        for (Instrument instrument : instrumentRepo.findAll()) {
+            InstrumentNumber numberToAdd = new InstrumentNumber(instrument);
+            InstrumentNumber numberToAdd2 = new InstrumentNumber(instrument);
+
+            instrumentNumberRepo.save(numberToAdd);
+            instrumentNumberRepo.save(numberToAdd2);
+
+            instrumentNumbersToAdd.add(numberToAdd);
+            instrumentNumbersToAdd.add(numberToAdd2);
+        }
+        Piece testPiece = new Piece("Crouching Tiger", "Tan Dun", instrumentNumbersToAdd);
+        pieceRepo.save(testPiece);
+
+        pulcinella.setInstrumentNumbers(instrumentNumbersToAdd2);
+        pieceRepo.save(pulcinella);
+        System.out.println(pulcinella.getInstrumentNumbers().size());
+        System.out.println(testPiece.getInstrumentNumbers().size());
 
     }
 }

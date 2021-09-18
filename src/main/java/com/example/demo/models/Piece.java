@@ -1,11 +1,16 @@
 package com.example.demo.models;
 
 
+import com.example.demo.repositories.InstrumentRepository;
+
+import javax.annotation.Resource;
 import javax.persistence.*;
 import java.util.Collection;
 
+
 @Entity
 public class Piece implements Comparable<Piece> {
+
 
     @Id
     @GeneratedValue
@@ -14,8 +19,34 @@ public class Piece implements Comparable<Piece> {
     private String title;
     private String composer;
 
+    private int firstViolins;
+    private int secondViolins;
+    private int violas;
+    private int cellos;
+    private int basses;
+
+    private int flutes;
+    private int oboes;
+    private int clarinets;
+    private int ebClarinets;
+    private int bassoons;
+
+    private int horns;
+    private int trumpets;
+    private int trombones;
+
+    private int tubas;
+    private int timpanis;
+    private int percussions;
+
+    private int pianos;
+    private int harps;
+
     @OneToOne
     private Orchestration orchestration;
+
+    @OneToMany
+    private Collection<InstrumentNumber> instrumentNumbers;
 
     @ManyToOne
     private Performance performance;
@@ -36,8 +67,14 @@ public class Piece implements Comparable<Piece> {
         this.composer = composer;
     }
 
+    public Piece(String title, String composer, Collection<InstrumentNumber> instrumentNumbers) {
+        this.title = title;
+        this.composer = composer;
+        this.instrumentNumbers = instrumentNumbers;
+    }
+
     public void setPerformance(Performance performance) {
-      this.performance = performance;
+        this.performance = performance;
     }
 
     public void setTitle(String title) {
@@ -54,6 +91,10 @@ public class Piece implements Comparable<Piece> {
 
     public void setInstruments(Collection<Instrument> instruments) {
         this.instruments = instruments;
+    }
+
+    public void setInstrumentNumbers(Collection<InstrumentNumber> instrumentNumbers) {
+        this.instrumentNumbers = instrumentNumbers;
     }
 
     public Long getId() {
@@ -82,6 +123,10 @@ public class Piece implements Comparable<Piece> {
 
     public Performance getPerformance() {
         return performance;
+    }
+
+    public Collection<InstrumentNumber> getInstrumentNumbers() {
+        return instrumentNumbers;
     }
 
     @Override

@@ -1,8 +1,12 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.models.Instrument;
+import com.example.demo.models.InstrumentNumber;
 import com.example.demo.models.Performance;
 import com.example.demo.models.Piece;
+import com.example.demo.repositories.InstrumentNumberRepository;
+import com.example.demo.repositories.InstrumentRepository;
 import com.example.demo.repositories.PerformanceRepository;
 import com.example.demo.repositories.PieceRepository;
 import org.springframework.security.core.parameters.P;
@@ -21,6 +25,12 @@ public class PieceRest {
 
     @Resource
     PieceRepository pieceRepo;
+
+    @Resource
+    InstrumentRepository instrumentRepo;
+
+    @Resource
+    InstrumentNumberRepository instrumentNumberRepo;
 
     @Resource
     PerformanceRepository performanceRepo;
@@ -48,9 +58,18 @@ public class PieceRest {
     public Collection<Piece> addPieceToDatabase(@RequestBody Piece pieceToAdd) throws IOException {
 
         if (!pieceRepo.existsByTitle(pieceToAdd.getTitle()) && !pieceRepo.existsByComposer(pieceToAdd.getComposer())) {
-            Piece newPiece = new Piece(pieceToAdd.getTitle(), pieceToAdd.getComposer());
+            Collection<InstrumentNumber> instrumentNumbersToAdd = new ArrayList<>();
+
+            for (Instrument instrument : instrumentRepo.findAll()) {
+                InstrumentNumber numberToAdd = new InstrumentNumber(instrument);
+                instrumentNumberRepo.save(numberToAdd);
+                instrumentNumbersToAdd.add(numberToAdd);
+            }
+
+            Piece newPiece = new Piece(pieceToAdd.getTitle(), pieceToAdd.getComposer(), instrumentNumbersToAdd);
+
             pieceRepo.save(newPiece);
-            System.out.println(newPiece.getComposer() + "    " + newPiece.getTitle());
+            System.out.println(newPiece.getComposer() + "    " + newPiece.getTitle() + "  " + newPiece.getInstrumentNumbers().size());
         }
         return (Collection<Piece>) pieceRepo.findAll();
 

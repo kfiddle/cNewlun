@@ -24,6 +24,9 @@ public class Instrument {
     @ManyToMany
     private Collection<Piece> pieces;
 
+    @OneToMany(mappedBy = "instrument")
+    private Collection<InstrumentNumber> instrumentNumbers;
+
     public Instrument() {
     }
 
@@ -54,5 +57,9 @@ public class Instrument {
 
     public Collection<Piece> getPieces() {
         return pieces;
+    }
+
+    public Collection<InstrumentNumber> getInstrumentNumbers() {
+        return instrumentNumbers;
     }
 }

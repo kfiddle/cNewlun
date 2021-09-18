@@ -1,6 +1,7 @@
 package com.example.demo.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -41,6 +42,7 @@ public class Orchestration {
 
     private int pianos;
     private int harps;
+
 
     @OneToOne
     private Piece piece;

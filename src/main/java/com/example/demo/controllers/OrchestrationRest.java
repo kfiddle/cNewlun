@@ -29,22 +29,30 @@ public class OrchestrationRest {
         return (Collection<Orchestration>) orchestrationRepo.findAll();
     }
 
+    @PostMapping("/get-orchestration-of-piece")
+    public Orchestration getOrchestrationOfPiece(@RequestBody Piece incomingPiece) {
+        return orchestrationRepo.findByPiece(incomingPiece);
+    }
+
     @PostMapping("/add-orchestration")
     public Collection<Orchestration> addOrchestrationToDatabase(@RequestBody Orchestration incomingOrchestration) throws IOException {
 
         try {
 
             if (incomingOrchestration.getId() == null) {
-                Piece pieceToGrab = pieceRepo.findById(incomingOrchestration.getPiece().getId()).get();
-                Orchestration orchestrationToAdd = new Orchestration(pieceToGrab);
+                Orchestration orchestrationToAdd = new Orchestration();
+
+                if (pieceRepo.findById(incomingOrchestration.getPiece().getId()).isPresent()) {
+                    Piece pieceToGrab = pieceRepo.findById(incomingOrchestration.getPiece().getId()).get();
+                    orchestrationToAdd.setPiece(pieceToGrab);
+                    System.out.println(pieceToGrab.getTitle());
+                }
 
                 if (incomingOrchestration.getFirstViolins() > 0) {
                     orchestrationToAdd.setFirstViolins(incomingOrchestration.getFirstViolins());
-                    System.out.println(incomingOrchestration.getFirstViolins() + " firsts");
                 }
                 if (incomingOrchestration.getSecondViolins() > 0) {
                     orchestrationToAdd.setSecondViolins(incomingOrchestration.getSecondViolins());
-                    System.out.println(incomingOrchestration.getSecondViolins() + " seconds");
 
                 }
                 if (incomingOrchestration.getViolas() > 0) {
@@ -95,7 +103,7 @@ public class OrchestrationRest {
                 if (incomingOrchestration.getPianos() > 0) {
                     orchestrationToAdd.setPianos(incomingOrchestration.getPianos());
                 }
-                System.out.println("hello");
+
                 orchestrationRepo.save(orchestrationToAdd);
             }
 
