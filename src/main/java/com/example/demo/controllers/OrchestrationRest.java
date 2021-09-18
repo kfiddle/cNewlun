@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.Orchestration;
 import com.example.demo.models.Performance;
+import com.example.demo.models.Piece;
 import com.example.demo.models.Player;
 import com.example.demo.repositories.OrchestrationRepository;
 import com.example.demo.repositories.PieceRepository;
@@ -34,7 +35,8 @@ public class OrchestrationRest {
         try {
 
             if (incomingOrchestration.getId() == null) {
-                Orchestration orchestrationToAdd = new Orchestration(incomingOrchestration.getPiece());
+                Piece pieceToGrab = pieceRepo.findById(incomingOrchestration.getPiece().getId()).get();
+                Orchestration orchestrationToAdd = new Orchestration(pieceToGrab);
 
                 if (incomingOrchestration.getFirstViolins() > 0) {
                     orchestrationToAdd.setFirstViolins(incomingOrchestration.getFirstViolins());
@@ -103,6 +105,7 @@ public class OrchestrationRest {
 
         }
 
+        System.out.println(orchestrationRepo.findAll());
         return (Collection<Orchestration>) orchestrationRepo.findAll();
 
     }
