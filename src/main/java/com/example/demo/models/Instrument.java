@@ -24,6 +24,7 @@ public class Instrument {
     @ManyToMany
     private Collection<Piece> pieces;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "instrument")
     private Collection<InstrumentNumber> instrumentNumbers;
 

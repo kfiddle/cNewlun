@@ -15,7 +15,7 @@ public class InstrumentNumber {
     @GeneratedValue
     private Long id;
 
-    @JsonIgnore
+
     @ManyToOne
     private Instrument instrument;
 

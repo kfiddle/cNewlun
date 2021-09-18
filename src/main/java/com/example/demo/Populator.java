@@ -31,9 +31,22 @@ public class Populator implements CommandLineRunner {
     @Resource
     PerformanceRepository performanceRepo;
 
+    @Resource
+    RosterRepository rosterRepo;
+
+    public Collection<InstrumentNumber> makeRoster() {
+        Collection<InstrumentNumber> collectionToMake = new ArrayList<>();
+        for (Instrument instrument : instrumentRepo.findAll()) {
+            InstrumentNumber numberToAdd = new InstrumentNumber(instrument);
+            instrumentNumberRepo.save(numberToAdd);
+            collectionToMake.add(numberToAdd);
+        }
+        return collectionToMake;
+    }
 
     @Override
     public void run(String... args) throws Exception {
+
 
         Instrument violin = new Instrument("Violin", InstrumentEnum.VIOLIN);
         Instrument viola = new Instrument("Viola", InstrumentEnum.VIOLA);
@@ -151,10 +164,12 @@ public class Populator implements CommandLineRunner {
         playerRepo.save(jeffS);
         playerRepo.save(jiYoung);
 
+        Collection<InstrumentNumber> instrumentNumbersForPulcinella = makeRoster();
+
         Piece stringsPiece = new Piece("Strings Piece");
         Piece windsPiece = new Piece("Winds Only");
         Piece fullGroup = new Piece("Huge Symphony");
-        Piece pulcinella = new Piece("Pulcinella");
+        Piece pulcinella = new Piece("Pulcinella", "Stravinsky", instrumentNumbersForPulcinella);
         Piece beeth6 = new Piece("Beethoven Symphony 6");
 
         Piece rousePiece = new Piece("Rouse Piece", "Rouse");
@@ -231,26 +246,28 @@ public class Populator implements CommandLineRunner {
         performanceRepo.save(pops1);
         performanceRepo.save(messiah);
 
-        Collection<InstrumentNumber> instrumentNumbersToAdd = new ArrayList<>();
-        Collection<InstrumentNumber> instrumentNumbersToAdd2 = new ArrayList<>();
 
-        for (Instrument instrument : instrumentRepo.findAll()) {
-            InstrumentNumber numberToAdd = new InstrumentNumber(instrument);
-            InstrumentNumber numberToAdd2 = new InstrumentNumber(instrument);
+        Collection<InstrumentNumber> instrumentNumbersForTiger = makeRoster();
 
-            instrumentNumberRepo.save(numberToAdd);
-            instrumentNumberRepo.save(numberToAdd2);
 
-            instrumentNumbersToAdd.add(numberToAdd);
-            instrumentNumbersToAdd.add(numberToAdd2);
-        }
-        Piece testPiece = new Piece("Crouching Tiger", "Tan Dun", instrumentNumbersToAdd);
-        pieceRepo.save(testPiece);
 
-        pulcinella.setInstrumentNumbers(instrumentNumbersToAdd2);
+        Piece crouchingTiger = new Piece("Crouching Tiger", "Tan Dun", instrumentNumbersForTiger);
+        pieceRepo.save(crouchingTiger);
+
         pieceRepo.save(pulcinella);
+
+        Roster rouseRoster = new Roster();
+        rosterRepo.save(rouseRoster);
+        rousePiece.setRoster(rouseRoster);
+        pieceRepo.save(rousePiece);
+
+        rousePiece.getRoster().setBasses(11);
+        rosterRepo.save(rouseRoster);
+        pieceRepo.save(rousePiece);
+
         System.out.println(pulcinella.getInstrumentNumbers().size());
-        System.out.println(testPiece.getInstrumentNumbers().size());
+        System.out.println(crouchingTiger.getInstrumentNumbers().size());
+        System.out.println(rousePiece.getRoster().getBasses() + "  are the basses in the Rouse");
 
     }
 }

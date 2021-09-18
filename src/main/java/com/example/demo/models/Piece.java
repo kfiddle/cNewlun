@@ -2,6 +2,7 @@ package com.example.demo.models;
 
 
 import com.example.demo.repositories.InstrumentRepository;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.annotation.Resource;
 import javax.persistence.*;
@@ -43,6 +44,9 @@ public class Piece implements Comparable<Piece> {
     private int harps;
 
     @OneToOne
+    private Roster roster;
+
+    @OneToOne
     private Orchestration orchestration;
 
     @OneToMany
@@ -73,6 +77,7 @@ public class Piece implements Comparable<Piece> {
         this.instrumentNumbers = instrumentNumbers;
     }
 
+
     public void setPerformance(Performance performance) {
         this.performance = performance;
     }
@@ -87,6 +92,10 @@ public class Piece implements Comparable<Piece> {
 
     public void setOrchestration(Orchestration orchestration) {
         this.orchestration = orchestration;
+    }
+
+    public void setRoster(Roster roster) {
+        this.roster = roster;
     }
 
     public void setInstruments(Collection<Instrument> instruments) {
@@ -119,6 +128,10 @@ public class Piece implements Comparable<Piece> {
 
     public Orchestration getOrchestration() {
         return orchestration;
+    }
+
+    public Roster getRoster() {
+        return roster;
     }
 
     public Performance getPerformance() {

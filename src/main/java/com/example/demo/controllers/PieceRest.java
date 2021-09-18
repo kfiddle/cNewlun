@@ -1,14 +1,8 @@
 package com.example.demo.controllers;
 
 
-import com.example.demo.models.Instrument;
-import com.example.demo.models.InstrumentNumber;
-import com.example.demo.models.Performance;
-import com.example.demo.models.Piece;
-import com.example.demo.repositories.InstrumentNumberRepository;
-import com.example.demo.repositories.InstrumentRepository;
-import com.example.demo.repositories.PerformanceRepository;
-import com.example.demo.repositories.PieceRepository;
+import com.example.demo.models.*;
+import com.example.demo.repositories.*;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +25,9 @@ public class PieceRest {
 
     @Resource
     InstrumentNumberRepository instrumentNumberRepo;
+
+    @Resource
+    RosterRepository rosterRepo;
 
     @Resource
     PerformanceRepository performanceRepo;
@@ -72,7 +69,35 @@ public class PieceRest {
             System.out.println(newPiece.getComposer() + "    " + newPiece.getTitle() + "  " + newPiece.getInstrumentNumbers().size());
         }
         return (Collection<Piece>) pieceRepo.findAll();
+    }
 
+    @PostMapping("/get-instrument-numbers-from-piece")
+    public Collection<InstrumentNumber> getAllInstrumentNumbersOfPiece(@RequestBody Piece incomingPiece) {
+        Collection<InstrumentNumber> instrumentNumbersToReturn = new ArrayList<>();
+
+        try {
+            if (pieceRepo.findById(incomingPiece.getId()).isPresent()) {
+                Piece pieceToSearch = pieceRepo.findById(incomingPiece.getId()).get();
+                instrumentNumbersToReturn.addAll(pieceToSearch.getInstrumentNumbers());
+            }
+
+        } catch (
+                Exception error) {
+            error.printStackTrace();
+
+        }
+        return instrumentNumbersToReturn;
+    }
+
+    @PostMapping("/get-roster-from-piece")
+    public Roster getRosterFromPiece(@RequestBody Piece incomingPiece) {
+
+        Roster rosterToReturn = new Roster();
+        if (pieceRepo.findById(incomingPiece.getId()).isPresent()) {
+            Piece pieceToSearch = pieceRepo.findById(incomingPiece.getId()).get();
+            rosterToReturn = pieceToSearch.getRoster();
+        }
+        return rosterToReturn;
     }
 
 
