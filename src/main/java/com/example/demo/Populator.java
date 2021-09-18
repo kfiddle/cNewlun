@@ -254,10 +254,19 @@ public class Populator implements CommandLineRunner {
         Piece crouchingTiger = new Piece("Crouching Tiger", "Tan Dun", instrumentNumbersForTiger);
         pieceRepo.save(crouchingTiger);
 
+        Roster pulcinellaRoster = new Roster();
+        rosterRepo.save(pulcinellaRoster);
+
+        pulcinella.setRoster(pulcinellaRoster);
+        pulcinella.getRoster().setHarps(7);
+
+        rosterRepo.save(pulcinellaRoster);
         pieceRepo.save(pulcinella);
 
         Roster rouseRoster = new Roster();
         rosterRepo.save(rouseRoster);
+
+
         rousePiece.setRoster(rouseRoster);
         pieceRepo.save(rousePiece);
 

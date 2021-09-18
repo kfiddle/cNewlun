@@ -55,18 +55,23 @@ public class PieceRest {
     public Collection<Piece> addPieceToDatabase(@RequestBody Piece pieceToAdd) throws IOException {
 
         if (!pieceRepo.existsByTitle(pieceToAdd.getTitle()) && !pieceRepo.existsByComposer(pieceToAdd.getComposer())) {
-            Collection<InstrumentNumber> instrumentNumbersToAdd = new ArrayList<>();
+//            Collection<InstrumentNumber> instrumentNumbersToAdd = new ArrayList<>();
+//
+//            for (Instrument instrument : instrumentRepo.findAll()) {
+//                InstrumentNumber numberToAdd = new InstrumentNumber(instrument);
+//                instrumentNumberRepo.save(numberToAdd);
+//                instrumentNumbersToAdd.add(numberToAdd);
+//            }
 
-            for (Instrument instrument : instrumentRepo.findAll()) {
-                InstrumentNumber numberToAdd = new InstrumentNumber(instrument);
-                instrumentNumberRepo.save(numberToAdd);
-                instrumentNumbersToAdd.add(numberToAdd);
-            }
+//            Piece newPiece = new Piece(pieceToAdd.getTitle(), pieceToAdd.getComposer(), instrumentNumbersToAdd);
+            Roster rosterToAdd = new Roster();
+            rosterRepo.save(rosterToAdd);
 
-            Piece newPiece = new Piece(pieceToAdd.getTitle(), pieceToAdd.getComposer(), instrumentNumbersToAdd);
+            Piece newPiece = new Piece(pieceToAdd.getTitle(), pieceToAdd.getComposer());
+            newPiece.setRoster(rosterToAdd);
 
             pieceRepo.save(newPiece);
-            System.out.println(newPiece.getComposer() + "    " + newPiece.getTitle() + "  " + newPiece.getInstrumentNumbers().size());
+            System.out.println(newPiece.getComposer() + "    " + newPiece.getTitle() + "   " + newPiece.getRoster());
         }
         return (Collection<Piece>) pieceRepo.findAll();
     }
@@ -98,6 +103,27 @@ public class PieceRest {
             rosterToReturn = pieceToSearch.getRoster();
         }
         return rosterToReturn;
+    }
+
+    @PostMapping("/set-roster")
+    public void setRosterToPiece(@RequestBody Roster incomingRoster) {
+        try {
+
+            if (pieceRepo.findById(incomingRoster.getPiece().getId()).isPresent()) {
+                Piece pieceToGetRoster = pieceRepo.findById(incomingRoster.getPiece().getId()).get();
+                Roster rosterToAdd = new Roster();
+                rosterRepo.save(rosterToAdd);
+                rosterToAdd.setAllProps(incomingRoster);
+                pieceToGetRoster.setRoster(rosterToAdd);
+                System.out.println(pieceToGetRoster.getRoster().getBasses() + " basses for real dude");
+                pieceRepo.save(pieceToGetRoster);
+            }
+        } catch (
+                Exception error) {
+            error.printStackTrace();
+
+        }
+
     }
 
 

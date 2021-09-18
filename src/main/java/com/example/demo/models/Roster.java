@@ -41,14 +41,36 @@ public class Roster {
     @OneToOne
     private Piece piece;
 
-    public Roster() {}
+    public Roster() {
+    }
 
     public Roster(Piece piece) {
         this.piece = piece;
     }
 
+    public Roster(int firstViolins, int secondViolins, int violas, int cellos, int basses, int flutes, int oboes, int clarinets, int ebClarinets, int bassoons, int horns, int trumpets, int trombones, int tubas, int timpanis, int percussions, int pianos, int harps) {
+        this.firstViolins = firstViolins;
+        this.secondViolins = secondViolins;
+        this.violas = violas;
+        this.cellos = cellos;
+        this.basses = basses;
+        this.flutes = flutes;
+        this.oboes = oboes;
+        this.clarinets = clarinets;
+        this.ebClarinets = ebClarinets;
+        this.bassoons = bassoons;
+        this.horns = horns;
+        this.trumpets = trumpets;
+        this.trombones = trombones;
+        this.tubas = tubas;
+        this.timpanis = timpanis;
+        this.percussions = percussions;
+        this.pianos = pianos;
+        this.harps = harps;
+    }
 
     public Roster(int firstViolins, int secondViolins, int violas, int cellos, int basses, int flutes, int oboes, int clarinets, int ebClarinets, int bassoons, int horns, int trumpets, int trombones, int tubas, int timpanis, int percussions, int pianos, int harps, Piece piece) {
+        this.piece = piece;
         this.firstViolins = firstViolins;
         this.secondViolins = secondViolins;
         this.violas = violas;
@@ -224,4 +246,66 @@ public class Roster {
     public Piece getPiece() {
         return piece;
     }
+
+    public void setAllProps(Roster otherRoster) {
+
+        if (otherRoster.getFirstViolins() > 0) {
+            firstViolins = otherRoster.getFirstViolins();
+        }
+        if (otherRoster.getSecondViolins() > 0) {
+            secondViolins = otherRoster.getSecondViolins();
+        }
+        if (otherRoster.getViolas() > 0) {
+            violas = otherRoster.getViolas();
+        }
+        if (otherRoster.getCellos() > 0) {
+            cellos = otherRoster.getCellos();
+        }
+        if (otherRoster.getBasses() > 0) {
+            basses = otherRoster.getBasses();
+        }
+        if (otherRoster.getFlutes() > 0) {
+            flutes = otherRoster.getFlutes();
+        }
+        if (otherRoster.getOboes() > 0) {
+            oboes = otherRoster.getOboes();
+        }
+        if (otherRoster.getClarinets() > 0) {
+            clarinets = otherRoster.getClarinets();
+        }
+        if (otherRoster.getEbClarinets() > 0) {
+            ebClarinets = otherRoster.getEbClarinets();
+        }
+        if (otherRoster.getBassoons() > 0) {
+            bassoons = otherRoster.getBassoons();
+        }
+        if (otherRoster.getHorns() > 0) {
+            horns = otherRoster.getHorns();
+        }
+        if (otherRoster.getTrumpets() > 0) {
+            trumpets = otherRoster.getTrumpets();
+        }
+        if (otherRoster.getTrombones() > 0) {
+            trombones = otherRoster.getTrombones();
+        }
+        if (otherRoster.getTubas() > 0) {
+            tubas = otherRoster.getTubas();
+        }
+        if (otherRoster.getHarps() > 0) {
+            harps = otherRoster.getHarps();
+        }
+        if (otherRoster.getTimpanis() > 0) {
+            timpanis = otherRoster.getTimpanis();
+        }
+        if (otherRoster.getPercussions() > 0) {
+            percussions = otherRoster.getPercussions();
+        }
+        if (otherRoster.getPianos() > 0) {
+            pianos = otherRoster.getPianos();
+        }
+
+
+    }
+
+
 }
