@@ -1,6 +1,13 @@
 package com.example.demo.enums;
 
 public enum InstrumentEnum {
+
+//    VIOLIN1("Violin 1"),
+//    VIOLIN2("Violin 2"),
+    VIOLIN("Violin"),
+    VIOLA("Viola"),
+    CELLO("Cello"),
+    BASS("Bass"),
     FLUTE("Flute"),
     OBOE("Oboe"),
     CLARINET("Clarinet"),
@@ -14,13 +21,9 @@ public enum InstrumentEnum {
     PERCUSSION("Percussion"),
     HARP("Harp"),
     KEYBOARD("Keyboard"),
-    VIOLIN("Violin"),
-    VIOLIN1("Violin 1"),
-    VIOLIN2("Violin 2"),
-    VIOLA("Viola"),
-    CELLO("Cello"),
-    PIANO("Piano"),
-    BASS("Bass");
+    PIANO("Piano");
+//    VIOLIN("Violin");
+
 
     private final String stringVersion;
 
@@ -31,4 +34,4 @@ public enum InstrumentEnum {
     public String toString() {
         return stringVersion;
     }
-    }
+}

@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static com.example.demo.enums.Type.CONTRACT;
 import static com.example.demo.enums.Type.SUB;
@@ -82,10 +83,12 @@ public class PlayerRest {
                 if (playerRepo.existsByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName())) {
                     return (Collection<Player>) playerRepo.findAll();
                 } else {
+
+
                     Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
 
                     if (incomingPlayer.getInstruments().size() > 0) {
-                        Collection<Instrument> instrumentsToAdd = new ArrayList<>();
+                         List<Instrument> instrumentsToAdd = new ArrayList<>();
 
                         for (Instrument instrument : incomingPlayer.getInstruments()) {
                             if (instrumentRepo.findById(instrument.getId()).isPresent()) {
@@ -93,6 +96,7 @@ public class PlayerRest {
                             }
                         }
                         playerToAdd.setInstruments(instrumentsToAdd);
+                        playerToAdd.setInstrumentEnum(instrumentsToAdd.get(0).getInstrumentEnum());
                     }
 
                     if (incomingPlayer.getEmail() != null) {
@@ -139,57 +143,8 @@ public class PlayerRest {
                 }
             } else if (playerRepo.findById(incomingPlayer.getId()).isPresent()) {
                 Player playerToEdit = playerRepo.findById(incomingPlayer.getId()).get();
-
-                if (incomingPlayer.getFirstNameArea() != null) {
-                    playerToEdit.setFirstNameArea(incomingPlayer.getFirstNameArea());
-                }
-
-                if (incomingPlayer.getLastName() != null) {
-                    playerToEdit.setLastName(incomingPlayer.getLastName());
-                }
-
-                if (incomingPlayer.getEmail() != null) {
-                    playerToEdit.setEmail(incomingPlayer.getEmail());
-                }
-
-                if (incomingPlayer.getHomePhone() != null) {
-                    playerToEdit.setHomePhone(incomingPlayer.getHomePhone());
-                }
-
-                if (incomingPlayer.getCellPhone() != null) {
-                    playerToEdit.setCellPhone(incomingPlayer.getCellPhone());
-                }
-
-                if (incomingPlayer.getAddressLine1() != null) {
-                    playerToEdit.setAddressLine1(incomingPlayer.getAddressLine1());
-                }
-
-                if (incomingPlayer.getAddressLine2() != null) {
-                    playerToEdit.setAddressLine2(incomingPlayer.getAddressLine2());
-                }
-
-                if (incomingPlayer.getCity() != null) {
-                    playerToEdit.setCity(incomingPlayer.getCity());
-                }
-
-                if (incomingPlayer.getState() != null) {
-                    playerToEdit.setState(incomingPlayer.getState());
-                }
-
-                if (incomingPlayer.getZip() != null) {
-                    playerToEdit.setZip(incomingPlayer.getZip());
-                }
-
-                if (incomingPlayer.getUnions() != null) {
-                    playerToEdit.setUnions(incomingPlayer.getUnions());
-                }
-
-                if (incomingPlayer.getType() != null) {
-                    playerToEdit.setType(incomingPlayer.getType());
-                }
-
+                playerToEdit.setAllProps(incomingPlayer);
                 playerRepo.save(playerToEdit);
-
             }
         } catch (
                 Exception error) {
@@ -199,6 +154,62 @@ public class PlayerRest {
     }
 
 }
+
+//  if (incomingPlayer.getFirstNameArea() != null) {
+//          playerToEdit.setFirstNameArea(incomingPlayer.getFirstNameArea());
+//          }
+//
+//          if (incomingPlayer.getLastName() != null) {
+//          playerToEdit.setLastName(incomingPlayer.getLastName());
+//          }
+//
+//          if (incomingPlayer.getEmail() != null) {
+//          playerToEdit.setEmail(incomingPlayer.getEmail());
+//          }
+//
+//          if (incomingPlayer.getHomePhone() != null) {
+//          playerToEdit.setHomePhone(incomingPlayer.getHomePhone());
+//          }
+//
+//          if (incomingPlayer.getCellPhone() != null) {
+//          playerToEdit.setCellPhone(incomingPlayer.getCellPhone());
+//          }
+//
+//          if (incomingPlayer.getAddressLine1() != null) {
+//          playerToEdit.setAddressLine1(incomingPlayer.getAddressLine1());
+//          }
+//
+//          if (incomingPlayer.getAddressLine2() != null) {
+//          playerToEdit.setAddressLine2(incomingPlayer.getAddressLine2());
+//          }
+//
+//          if (incomingPlayer.getCity() != null) {
+//          playerToEdit.setCity(incomingPlayer.getCity());
+//          }
+//
+//          if (incomingPlayer.getState() != null) {
+//          playerToEdit.setState(incomingPlayer.getState());
+//          }
+//
+//          if (incomingPlayer.getZip() != null) {
+//          playerToEdit.setZip(incomingPlayer.getZip());
+//          }
+//
+//          if (incomingPlayer.getUnions() != null) {
+//          playerToEdit.setUnions(incomingPlayer.getUnions());
+//          }
+//
+//          if (incomingPlayer.getType() != null) {
+//          playerToEdit.setType(incomingPlayer.getType());
+//          }
+
+
+
+
+
+
+
+
 
 //        }
 //

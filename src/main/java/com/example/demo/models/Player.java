@@ -18,7 +18,7 @@ public class Player {
     private Long id;
 
     @ManyToMany
-    private Collection<Instrument> instruments;
+    private List<Instrument> instruments;
 
     private InstrumentEnum instrumentEnum;
     private Type type;
@@ -60,17 +60,19 @@ public class Player {
         this.email = email;
     }
 
-    public Player(String firstNameArea, String lastName, Collection<Instrument> instruments) {
+    public Player(String firstNameArea, String lastName, List<Instrument> instruments) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         this.instruments = instruments;
+        this.instrumentEnum = instruments.get(0).getInstrumentEnum();
     }
 
-    public Player(String firstNameArea, String lastName, Collection<Instrument> instruments, Type type) {
+    public Player(String firstNameArea, String lastName, List<Instrument> instruments, Type type) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         this.instruments = instruments;
         this.type = type;
+        this.instrumentEnum = instruments.get(0).getInstrumentEnum();
     }
 
     public Player(String firstNameArea, String lastName, String email, String cellPhone) {
@@ -108,7 +110,7 @@ public class Player {
         this.zip = zip;
     }
 
-    public Player(Collection<Instrument> instruments, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, Collection<Piece> pieces, Collection<PerformanceId> performanceIds) {
+    public Player(List<Instrument> instruments, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, Collection<Piece> pieces, Collection<PerformanceId> performanceIds) {
         this.instruments = instruments;
         this.type = type;
         this.firstNameArea = firstNameArea;
@@ -123,6 +125,7 @@ public class Player {
         this.zip = zip;
         this.pieces = pieces;
         this.performanceIds = performanceIds;
+        this.instrumentEnum = instruments.get(0).getInstrumentEnum();
     }
 
     public void setFirstNameArea(String firstNameArea) {
@@ -169,7 +172,7 @@ public class Player {
         this.instrumentEnum = instrumentEnum;
     }
 
-    public void setInstruments(Collection<Instrument> instruments) {
+    public void setInstruments(List<Instrument> instruments) {
         this.instruments = instruments;
     }
 
@@ -265,6 +268,69 @@ public class Player {
 
     public Collection<PerformanceId> getPerformanceIds() {
         return performanceIds;
+    }
+
+
+    public void setAllProps(Player otherPlayer) {
+
+        if (otherPlayer.getFirstNameArea() != null) {
+            firstNameArea = otherPlayer.getFirstNameArea();
+        }
+
+        if (otherPlayer.getLastName() != null) {
+            lastName = otherPlayer.getLastName();
+        }
+
+        if (otherPlayer.getInstruments().size() > 0) {
+            List<Instrument> instrumentsToAdd = new ArrayList<>(otherPlayer.getInstruments());
+            instruments = instrumentsToAdd;
+            instrumentEnum = instrumentsToAdd.get(0).getInstrumentEnum();
+        }
+
+        if (otherPlayer.getEmail() != null) {
+            email = otherPlayer.getEmail();
+        }
+
+        if (otherPlayer.getHomePhone() != null) {
+            homePhone = otherPlayer.getHomePhone();
+        }
+
+        if (otherPlayer.getCellPhone() != null) {
+            cellPhone = otherPlayer.getCellPhone();
+        }
+
+        if (otherPlayer.getAddressLine1() != null) {
+            addressLine1 = otherPlayer.getAddressLine1();
+        }
+
+        if (otherPlayer.getAddressLine2() != null) {
+            addressLine2 = otherPlayer.getAddressLine2();
+        }
+
+        if (otherPlayer.getCity() != null) {
+            city = otherPlayer.getCity();
+        }
+
+        if (otherPlayer.getState() != null) {
+            state = otherPlayer.getState();
+        }
+
+        if (otherPlayer.getZip() != null) {
+            zip = otherPlayer.getZip();
+        }
+
+        if (otherPlayer.getUnions() != null) {
+            unions = otherPlayer.getUnions();
+        }
+
+        if (otherPlayer.getType() != null) {
+            type = otherPlayer.getType();
+        }
+
+        if (otherPlayer.getInstrumentEnum() != null) {
+            instrumentEnum = otherPlayer.getInstrumentEnum();
+        }
+
     }
 
 
