@@ -48,9 +48,16 @@ public class PlayerRest {
         return playerRepo.findByType(SUB, Sort.by("subRanking", "lastName"));
     }
 
+    @RequestMapping("/contracts/{instrument}")
+    public Collection<Player> getContractsOfSpecifiedInstrument(@PathVariable InstrumentEnum instrument) {
+        return playerRepo.findByTypeAndInstrumentEnum(CONTRACT, instrument, Sort.by("lastName"));
+    }
+
+
+
+
     @RequestMapping("/subs/{instrument}")
     public Collection<Player> getSubsOfSpecifiedInstrument(@PathVariable InstrumentEnum instrument) {
-
         return playerRepo.findByTypeAndInstrumentEnum(SUB, instrument, Sort.by("subRanking", "lastName"));
     }
 

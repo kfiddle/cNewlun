@@ -144,6 +144,10 @@ public class Populator implements CommandLineRunner {
         gracie.setInstrumentEnum(InstrumentEnum.VIOLIN);
         doodle.setInstrumentEnum(InstrumentEnum.HORN);
         liesl.setInstrumentEnum(InstrumentEnum.CLARINET);
+        nHess.setInstrumentEnum(InstrumentEnum.BASSOON);
+        heatherS.setInstrumentEnum(InstrumentEnum.CELLO);
+        jiYoung.setInstrumentEnum(InstrumentEnum.VIOLA);
+        ami.setInstrumentEnum(InstrumentEnum.CLARINET);
 
         playerRepo.save(mariaV);
         playerRepo.save(gingerV);
