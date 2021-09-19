@@ -48,80 +48,80 @@ public class Populator implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 
-        Instrument violin = new Instrument("Violin", InstrumentEnum.VIOLIN);
-        Instrument viola = new Instrument("Viola", InstrumentEnum.VIOLA);
-        Instrument cello = new Instrument("cello", InstrumentEnum.CELLO);
-        Instrument bass = new Instrument("Bass", InstrumentEnum.BASS);
-        Instrument flute = new Instrument("Flute", InstrumentEnum.FLUTE);
-        Instrument oboe = new Instrument("Oboe", InstrumentEnum.OBOE);
-        Instrument clarinet = new Instrument("Clarinet", InstrumentEnum.CLARINET);
-        Instrument eBClarinet = new Instrument("Eb Clarinet", InstrumentEnum.EBCLARINET);
-        Instrument bassoon = new Instrument("Bassoon", InstrumentEnum.BASSOON);
-        Instrument horn = new Instrument("Horn", InstrumentEnum.HORN);
-        Instrument trumpet = new Instrument("Trumpet", InstrumentEnum.TRUMPET);
-        Instrument trombone = new Instrument("Trombone", InstrumentEnum.TROMBONE);
-        Instrument tuba = new Instrument("Tuba", InstrumentEnum.TUBA);
-        Instrument timpani = new Instrument("Timpani", InstrumentEnum.TIMPANI);
-        Instrument percussion = new Instrument("Percussion", InstrumentEnum.PERCUSSION);
-        Instrument piano = new Instrument("Piano", InstrumentEnum.PIANO);
-        Instrument harp = new Instrument("Harp", InstrumentEnum.HARP);
+//        Instrument violin = new Instrument("Violin", InstrumentEnum.VIOLIN);
+//        Instrument viola = new Instrument("Viola", InstrumentEnum.VIOLA);
+//        Instrument cello = new Instrument("cello", InstrumentEnum.CELLO);
+//        Instrument bass = new Instrument("Bass", InstrumentEnum.BASS);
+//        Instrument flute = new Instrument("Flute", InstrumentEnum.FLUTE);
+//        Instrument oboe = new Instrument("Oboe", InstrumentEnum.OBOE);
+//        Instrument clarinet = new Instrument("Clarinet", InstrumentEnum.CLARINET);
+//        Instrument eBClarinet = new Instrument("Eb Clarinet", InstrumentEnum.EBCLARINET);
+//        Instrument bassoon = new Instrument("Bassoon", InstrumentEnum.BASSOON);
+//        Instrument horn = new Instrument("Horn", InstrumentEnum.HORN);
+//        Instrument trumpet = new Instrument("Trumpet", InstrumentEnum.TRUMPET);
+//        Instrument trombone = new Instrument("Trombone", InstrumentEnum.TROMBONE);
+//        Instrument tuba = new Instrument("Tuba", InstrumentEnum.TUBA);
+//        Instrument timpani = new Instrument("Timpani", InstrumentEnum.TIMPANI);
+//        Instrument percussion = new Instrument("Percussion", InstrumentEnum.PERCUSSION);
+//        Instrument piano = new Instrument("Piano", InstrumentEnum.PIANO);
+//        Instrument harp = new Instrument("Harp", InstrumentEnum.HARP);
 
-        instrumentRepo.save(violin);
-        instrumentRepo.save(viola);
-        instrumentRepo.save(cello);
-        instrumentRepo.save(bass);
-        instrumentRepo.save(flute);
-        instrumentRepo.save(oboe);
-        instrumentRepo.save(clarinet);
-        instrumentRepo.save(bassoon);
-        instrumentRepo.save(eBClarinet);
-        instrumentRepo.save(horn);
-        instrumentRepo.save(trumpet);
-        instrumentRepo.save(trombone);
-        instrumentRepo.save(tuba);
-        instrumentRepo.save(timpani);
-        instrumentRepo.save(percussion);
-        instrumentRepo.save(piano);
-        instrumentRepo.save(harp);
+//        instrumentRepo.save(violin);
+//        instrumentRepo.save(viola);
+//        instrumentRepo.save(cello);
+//        instrumentRepo.save(bass);
+//        instrumentRepo.save(flute);
+//        instrumentRepo.save(oboe);
+//        instrumentRepo.save(clarinet);
+//        instrumentRepo.save(bassoon);
+//        instrumentRepo.save(eBClarinet);
+//        instrumentRepo.save(horn);
+//        instrumentRepo.save(trumpet);
+//        instrumentRepo.save(trombone);
+//        instrumentRepo.save(tuba);
+//        instrumentRepo.save(timpani);
+//        instrumentRepo.save(percussion);
+//        instrumentRepo.save(piano);
+//        instrumentRepo.save(harp);
 
-        ArrayList<Instrument> violinList = new ArrayList<>();
-        violinList.add(violin);
+//        ArrayList<Instrument> violinList = new ArrayList<>();
+//        violinList.add(violin);
+//
+//        ArrayList<Instrument> violaList = new ArrayList<>();
+//        violaList.add(viola);
 
-        ArrayList<Instrument> violaList = new ArrayList<>();
-        violaList.add(viola);
+//        ArrayList<Instrument> celloList = new ArrayList<>();
+//        celloList.add(cello);
+//
+//        ArrayList<Instrument> clarinetList = new ArrayList<>();
+//        clarinetList.add(clarinet);
+//
+//        ArrayList<Instrument> oboeList = new ArrayList<>();
+//        oboeList.add(oboe);
+//
+//        ArrayList<Instrument> eBClarinetList = new ArrayList<>();
+//        eBClarinetList.add(eBClarinet);
+//
+//        ArrayList<Instrument> fluteList = new ArrayList<>();
+//        fluteList.add(flute);
 
-        ArrayList<Instrument> celloList = new ArrayList<>();
-        celloList.add(cello);
+        Player leAnne = new Player("Leanne", "Wistrom", InstrumentEnum.FLUTE, Type.CONTRACT);
+        Player seanG = new Player("Sean", "Gabriel", InstrumentEnum.FLUTE, Type.CONTRACT);
+        Player sarahH = new Player("Sarah", "Hamilton", InstrumentEnum.EBCLARINET, Type.CONTRACT);
+        Player danna = new Player("Danna", "Sundet", InstrumentEnum.OBOE, Type.CONTRACT);
+        Player heatherS = new Player("Heather", "Storey", InstrumentEnum.OBOE, Type.CONTRACT);
+        Player ami = new Player("Amitai", "Vardi", InstrumentEnum.CLARINET, Type.CONTRACT);
+        Player liesl = new Player("Liesl", "Hook", InstrumentEnum.VIOLIN, Type.SUB);
+        Player jenJ = new Player("Jennifer", "Jansen", InstrumentEnum.VIOLIN, Type.CONTRACT);
+        Player jeffS = new Player("Jeff", "Singler", InstrumentEnum.CELLO, Type.CONTRACT);
+        Player jiYoung = new Player("Ji Young", "Nam", InstrumentEnum.VIOLA, Type.CONTRACT);
 
-        ArrayList<Instrument> clarinetList = new ArrayList<>();
-        clarinetList.add(clarinet);
-
-        ArrayList<Instrument> oboeList = new ArrayList<>();
-        oboeList.add(oboe);
-
-        ArrayList<Instrument> eBClarinetList = new ArrayList<>();
-        eBClarinetList.add(eBClarinet);
-
-        ArrayList<Instrument> fluteList = new ArrayList<>();
-        fluteList.add(flute);
-
-        Player leAnne = new Player("Leanne", "Wistrom", fluteList, Type.CONTRACT);
-        Player seanG = new Player("Sean", "Gabriel", fluteList, Type.CONTRACT);
-        Player sarahH = new Player("Sarah", "Hamilton", eBClarinetList, Type.CONTRACT);
-        Player danna = new Player("Danna", "Sundet", oboeList, Type.CONTRACT);
-        Player heatherS = new Player("Heather", "Storey", oboeList, Type.CONTRACT);
-        Player ami = new Player("Amitai", "Vardi", clarinetList, Type.CONTRACT);
-        Player liesl = new Player("Liesl", "Hook", violinList, Type.SUB);
-        Player jenJ = new Player("Jennifer", "Jansen", violinList, Type.CONTRACT);
-        Player jeffS = new Player("Jeff", "Singler", celloList, Type.CONTRACT);
-        Player jiYoung = new Player("Ji Young", "Nam", violaList, Type.CONTRACT);
-
-        Player mariaV = new Player("Maria", "Vinas", violinList, Type.SUB);
-        Player gingerV = new Player("Ginger", "Winas", violinList, Type.SUB);
-        Player beano = new Player("Bean", "Pasta", violinList, Type.SUB);
-        Player gracie = new Player("Grace", "Pasta", violinList, Type.SUB);
-        Player doodle = new Player("Doodle", "Pasta", violinList, Type.SUB);
-        Player nHess = new Player("Nate", "Hess", violinList, Type.SUB);
+        Player mariaV = new Player("Maria", "Vinas", InstrumentEnum.VIOLIN, Type.SUB);
+        Player gingerV = new Player("Ginger", "Winas", InstrumentEnum.VIOLIN, Type.SUB);
+        Player beano = new Player("Bean", "Pasta", InstrumentEnum.VIOLIN, Type.SUB);
+        Player gracie = new Player("Grace", "Pasta", InstrumentEnum.VIOLIN, Type.SUB);
+        Player doodle = new Player("Doodle", "Pasta", InstrumentEnum.VIOLIN, Type.SUB);
+        Player nHess = new Player("Nate", "Hess", InstrumentEnum.VIOLIN, Type.SUB);
 
         playerRepo.save(mariaV);
         playerRepo.save(gingerV);
@@ -187,9 +187,9 @@ public class Populator implements CommandLineRunner {
         Piece pulcinella3 = new Piece("pulce 3");
         Piece beeth3 = new Piece("Beethoven Symphony 3");
 
-        Collection<Instrument> stringsPlayers = new ArrayList<>();
-        stringsPlayers.add(violin);
-        stringsPlayers.add(violin);
+//        Collection<Instrument> stringsPlayers = new ArrayList<>();
+//        stringsPlayers.add(violin);
+//        stringsPlayers.add(violin);
 
         pieceRepo.save(pulcinella2);
         pieceRepo.save(rousePiece);
@@ -207,7 +207,7 @@ public class Populator implements CommandLineRunner {
         pieceRepo.save(windsPiece);
         pieceRepo.save(beeth6);
 
-        pulcinella.setInstruments(stringsPlayers);
+//        pulcinella.setInstruments(stringsPlayers);
         pieceRepo.save(pulcinella);
 
         Performance sym1 = new Performance("Sym 1", LocalDate.now());

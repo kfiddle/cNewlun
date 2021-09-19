@@ -67,6 +67,13 @@ public class Player {
         this.instrumentEnum = instruments.get(0).getInstrumentEnum();
     }
 
+    public Player(String firstNameArea, String lastName, InstrumentEnum instrumentEnum, Type type) {
+        this.firstNameArea = firstNameArea;
+        this.lastName = lastName;
+        this.instrumentEnum = instrumentEnum;
+        this.type = type;
+    }
+
     public Player(String firstNameArea, String lastName, List<Instrument> instruments, Type type) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
@@ -281,11 +288,11 @@ public class Player {
             lastName = otherPlayer.getLastName();
         }
 
-        if (otherPlayer.getInstruments().size() > 0) {
-            List<Instrument> instrumentsToAdd = new ArrayList<>(otherPlayer.getInstruments());
-            instruments = instrumentsToAdd;
-            instrumentEnum = instrumentsToAdd.get(0).getInstrumentEnum();
-        }
+//        if (otherPlayer.getInstruments().size() > 0) {
+//            List<Instrument> instrumentsToAdd = new ArrayList<>(otherPlayer.getInstruments());
+//            instruments = instrumentsToAdd;
+//            instrumentEnum = instrumentsToAdd.get(0).getInstrumentEnum();
+//        }
 
         if (otherPlayer.getEmail() != null) {
             email = otherPlayer.getEmail();

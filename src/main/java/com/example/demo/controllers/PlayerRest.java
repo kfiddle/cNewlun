@@ -41,7 +41,6 @@ public class PlayerRest {
     @RequestMapping("/get-all-contracted-players")
     public Collection<Player> getAllContractedPlayers() {
         return playerRepo.findByType(CONTRACT, Sort.by("subRanking", "lastName"));
-
     }
 
     @RequestMapping("/get-all-sub-players")
@@ -53,8 +52,6 @@ public class PlayerRest {
     public Collection<Player> getContractsOfSpecifiedInstrument(@PathVariable InstrumentEnum instrument) {
         return playerRepo.findByTypeAndInstrumentEnum(CONTRACT, instrument, Sort.by("lastName"));
     }
-
-
 
 
     @RequestMapping("/subs/{instrument}")
@@ -78,68 +75,14 @@ public class PlayerRest {
         try {
 
             if (incomingPlayer.getId() == null) {
-
-
                 if (playerRepo.existsByFirstNameAreaAndLastName(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName())) {
                     return (Collection<Player>) playerRepo.findAll();
                 } else {
-
-
                     Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
-
-                    if (incomingPlayer.getInstruments().size() > 0) {
-                         List<Instrument> instrumentsToAdd = new ArrayList<>();
-
-                        for (Instrument instrument : incomingPlayer.getInstruments()) {
-                            if (instrumentRepo.findById(instrument.getId()).isPresent()) {
-                                instrumentsToAdd.add(instrument);
-                            }
-                        }
-                        playerToAdd.setInstruments(instrumentsToAdd);
-                        playerToAdd.setInstrumentEnum(instrumentsToAdd.get(0).getInstrumentEnum());
-                    }
-
-                    if (incomingPlayer.getEmail() != null) {
-                        playerToAdd.setEmail(incomingPlayer.getEmail());
-                    }
-
-                    if (incomingPlayer.getHomePhone() != null) {
-                        playerToAdd.setHomePhone(incomingPlayer.getHomePhone());
-                    }
-
-                    if (incomingPlayer.getCellPhone() != null) {
-                        playerToAdd.setCellPhone(incomingPlayer.getCellPhone());
-                    }
-
-                    if (incomingPlayer.getAddressLine1() != null) {
-                        playerToAdd.setAddressLine1(incomingPlayer.getAddressLine1());
-                    }
-
-                    if (incomingPlayer.getAddressLine2() != null) {
-                        playerToAdd.setAddressLine2(incomingPlayer.getAddressLine2());
-                    }
-
-                    if (incomingPlayer.getCity() != null) {
-                        playerToAdd.setCity(incomingPlayer.getCity());
-                    }
-
-                    if (incomingPlayer.getState() != null) {
-                        playerToAdd.setState(incomingPlayer.getState());
-                    }
-
-                    if (incomingPlayer.getZip() != null) {
-                        playerToAdd.setZip(incomingPlayer.getZip());
-                    }
-
-                    if (incomingPlayer.getUnions() != null) {
-                        playerToAdd.setUnions(incomingPlayer.getUnions());
-                    }
-
-                    if (incomingPlayer.getType() != null) {
-                        playerToAdd.setType(incomingPlayer.getType());
-                    }
-
+//                    playerRepo.save(playerToAdd);
+                    playerToAdd.setAllProps(incomingPlayer);
                     playerRepo.save(playerToAdd);
+                    System.out.println(playerToAdd.getFirstNameArea() + "   " + playerToAdd.getLastName() + "  " + playerToAdd.getInstrumentEnum());
                 }
             } else if (playerRepo.findById(incomingPlayer.getId()).isPresent()) {
                 Player playerToEdit = playerRepo.findById(incomingPlayer.getId()).get();
@@ -202,13 +145,6 @@ public class PlayerRest {
 //          if (incomingPlayer.getType() != null) {
 //          playerToEdit.setType(incomingPlayer.getType());
 //          }
-
-
-
-
-
-
-
 
 
 //        }
