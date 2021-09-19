@@ -50,6 +50,7 @@ public class PlayerRest {
 
     @RequestMapping("/contracts/{instrument}")
     public Collection<Player> getContractsOfSpecifiedInstrument(@PathVariable InstrumentEnum instrument) {
+
         return playerRepo.findByTypeAndInstrumentEnum(CONTRACT, instrument, Sort.by("lastName"));
     }
 
@@ -79,7 +80,6 @@ public class PlayerRest {
                     return (Collection<Player>) playerRepo.findAll();
                 } else {
                     Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
-//                    playerRepo.save(playerToAdd);
                     playerToAdd.setAllProps(incomingPlayer);
                     playerRepo.save(playerToAdd);
                     System.out.println(playerToAdd.getFirstNameArea() + "   " + playerToAdd.getLastName() + "  " + playerToAdd.getInstrumentEnum());
