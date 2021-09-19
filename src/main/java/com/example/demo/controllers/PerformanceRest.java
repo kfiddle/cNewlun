@@ -81,18 +81,4 @@ public class PerformanceRest {
         }
         return piecesToReturn;
     }
-
-//        try {
-//            if (performanceRepo.findById(incomingPerformance.getId()).isPresent()) {
-//                Performance performanceToSearch = performanceRepo.findById(incomingPerformance.getId()).get();
-//                return performanceToSearch.getPieces();
-//            }
-//
-//
-//
-//        } catch (
-//                Exception error) {
-//            error.printStackTrace();
-//        }
-
 }

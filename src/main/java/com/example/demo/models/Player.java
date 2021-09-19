@@ -1,13 +1,12 @@
 package com.example.demo.models;
 
 
+import com.example.demo.enums.Chair;
 import com.example.demo.enums.InstrumentEnum;
 import com.example.demo.enums.Type;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 
 @Entity
@@ -38,10 +37,14 @@ public class Player {
 
     private String unions;
     private int subRanking;
+    private Chair chair;
 
 
     @ManyToMany
     private Collection<Piece> pieces;
+
+    @OneToMany
+    private List<AvailablePerformance> availablePerformances;
 
     @ManyToMany
     private Collection<PerformanceId> performanceIds;
@@ -82,6 +85,9 @@ public class Player {
         this.instrumentEnum = instruments.get(0).getInstrumentEnum();
     }
 
+    public Player(Player enteringPlayer, List<AvailablePerformance> availablePerformances) {
+    }
+
     public Player(String firstNameArea, String lastName, String email, String cellPhone) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
@@ -102,9 +108,8 @@ public class Player {
         this.zip = zip;
     }
 
-    public Player(InstrumentEnum instrumentEnum, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip) {
+    public Player(InstrumentEnum instrumentEnum, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, Chair chair) {
         this.instrumentEnum = instrumentEnum;
-        this.type = type;
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
         this.email = email;
@@ -115,6 +120,8 @@ public class Player {
         this.city = city;
         this.state = state;
         this.zip = zip;
+        this.type = type;
+        this.chair = chair;
     }
 
     public Player(List<Instrument> instruments, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, Collection<Piece> pieces, Collection<PerformanceId> performanceIds) {
@@ -195,6 +202,10 @@ public class Player {
         this.pieces = pieces;
     }
 
+    public void setAvailablePerformances(List<AvailablePerformance> availablePerformances) {
+        this.availablePerformances = availablePerformances;
+    }
+
     public void setPerformanceIds(Collection<PerformanceId> performanceIds) {
         this.performanceIds = performanceIds;
     }
@@ -269,8 +280,16 @@ public class Player {
         return subRanking;
     }
 
+    private Chair getChair() {
+        return chair;
+    }
+
     public Collection<Piece> getPieces() {
         return pieces;
+    }
+
+    public List<AvailablePerformance> getAvailablePerformances() {
+        return availablePerformances;
     }
 
     public Collection<PerformanceId> getPerformanceIds() {
@@ -287,12 +306,6 @@ public class Player {
         if (otherPlayer.getLastName() != null) {
             lastName = otherPlayer.getLastName();
         }
-
-//        if (otherPlayer.getInstruments().size() > 0) {
-//            List<Instrument> instrumentsToAdd = new ArrayList<>(otherPlayer.getInstruments());
-//            instruments = instrumentsToAdd;
-//            instrumentEnum = instrumentsToAdd.get(0).getInstrumentEnum();
-//        }
 
         if (otherPlayer.getEmail() != null) {
             email = otherPlayer.getEmail();
@@ -334,11 +347,16 @@ public class Player {
             type = otherPlayer.getType();
         }
 
+        if (otherPlayer.getChair() != null) {
+            chair = otherPlayer.getChair();
+        }
+
         if (otherPlayer.getInstrumentEnum() != null) {
             instrumentEnum = otherPlayer.getInstrumentEnum();
         }
 
     }
+
 
 
 }

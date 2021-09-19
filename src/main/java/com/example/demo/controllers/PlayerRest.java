@@ -2,11 +2,10 @@ package com.example.demo.controllers;
 
 
 import com.example.demo.enums.InstrumentEnum;
+import com.example.demo.models.AvailablePerformance;
 import com.example.demo.models.Instrument;
 import com.example.demo.models.Player;
-import com.example.demo.repositories.InstrumentRepository;
-import com.example.demo.repositories.PerformanceIdRepository;
-import com.example.demo.repositories.PlayerRepository;
+import com.example.demo.repositories.*;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +29,13 @@ public class PlayerRest {
     InstrumentRepository instrumentRepo;
 
     @Resource
+    PerformanceRepository performanceRepo;
+
+    @Resource
     PerformanceIdRepository performanceIdRepo;
+
+    @Resource
+    AvailablePerformanceRepository availablePerformanceRepo;
 
 
     @RequestMapping("/get-all-players")
@@ -50,7 +55,6 @@ public class PlayerRest {
 
     @RequestMapping("/contracts/{instrument}")
     public Collection<Player> getContractsOfSpecifiedInstrument(@PathVariable InstrumentEnum instrument) {
-
         return playerRepo.findByTypeAndInstrumentEnum(CONTRACT, instrument, Sort.by("lastName"));
     }
 
@@ -96,179 +100,23 @@ public class PlayerRest {
         return (Collection<Player>) playerRepo.findAll();
     }
 
+    @PostMapping("/set-psa")
+    public void setAvailablePerformancesForPlayer(@RequestBody Player incomingPlayer) {
+        List<AvailablePerformance> availablePerformances = new ArrayList<>();
+
+        for (AvailablePerformance availablePerformance : incomingPlayer.getAvailablePerformances()) {
+            if (performanceRepo.findById(availablePerformance.getPerformanceId()).isPresent()) {
+                AvailablePerformance newAP = new AvailablePerformance(availablePerformance.getPerformanceId(), availablePerformance.isAccepted());
+                availablePerformanceRepo.save(newAP);
+                availablePerformances.add(newAP);
+            }
+        }
+
+        if (playerRepo.findById(incomingPlayer.getId()).isPresent()) {
+            Player playerToSetPsa = playerRepo.findById(incomingPlayer.getId()).get();
+            playerToSetPsa.setAvailablePerformances(availablePerformances);
+        }
+    }
+
+
 }
-
-//  if (incomingPlayer.getFirstNameArea() != null) {
-//          playerToEdit.setFirstNameArea(incomingPlayer.getFirstNameArea());
-//          }
-//
-//          if (incomingPlayer.getLastName() != null) {
-//          playerToEdit.setLastName(incomingPlayer.getLastName());
-//          }
-//
-//          if (incomingPlayer.getEmail() != null) {
-//          playerToEdit.setEmail(incomingPlayer.getEmail());
-//          }
-//
-//          if (incomingPlayer.getHomePhone() != null) {
-//          playerToEdit.setHomePhone(incomingPlayer.getHomePhone());
-//          }
-//
-//          if (incomingPlayer.getCellPhone() != null) {
-//          playerToEdit.setCellPhone(incomingPlayer.getCellPhone());
-//          }
-//
-//          if (incomingPlayer.getAddressLine1() != null) {
-//          playerToEdit.setAddressLine1(incomingPlayer.getAddressLine1());
-//          }
-//
-//          if (incomingPlayer.getAddressLine2() != null) {
-//          playerToEdit.setAddressLine2(incomingPlayer.getAddressLine2());
-//          }
-//
-//          if (incomingPlayer.getCity() != null) {
-//          playerToEdit.setCity(incomingPlayer.getCity());
-//          }
-//
-//          if (incomingPlayer.getState() != null) {
-//          playerToEdit.setState(incomingPlayer.getState());
-//          }
-//
-//          if (incomingPlayer.getZip() != null) {
-//          playerToEdit.setZip(incomingPlayer.getZip());
-//          }
-//
-//          if (incomingPlayer.getUnions() != null) {
-//          playerToEdit.setUnions(incomingPlayer.getUnions());
-//          }
-//
-//          if (incomingPlayer.getType() != null) {
-//          playerToEdit.setType(incomingPlayer.getType());
-//          }
-
-
-//        }
-//
-//
-//        if (playerRepo.existsByFirstNameArea(incomingPlayer.getFirstNameArea()) && playerRepo.existsByLastName(incomingPlayer.getLastName())) {
-//            return (Collection<Player>) playerRepo.findAll();
-//        } else if (incomingPlayer.getId() == null) {
-//            Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
-//
-//            if (incomingPlayer.getInstruments().size() > 0) {
-//                Collection<Instrument> instrumentsToAdd = new ArrayList<>();
-//
-//                for (Instrument instrument : incomingPlayer.getInstruments()) {
-//                    if (instrumentRepo.findById(instrument.getId()).isPresent()) {
-//                        instrumentsToAdd.add(instrument);
-//                    }
-//                }
-//                playerToAdd.setInstruments(instrumentsToAdd);
-//            }
-//
-//            if (incomingPlayer.getEmail() != null) {
-//                playerToAdd.setEmail(incomingPlayer.getEmail());
-//            }
-//
-//            if (incomingPlayer.getHomePhone() != null) {
-//                playerToAdd.setHomePhone(incomingPlayer.getHomePhone());
-//            }
-//
-//            if (incomingPlayer.getCellPhone() != null) {
-//                playerToAdd.setCellPhone(incomingPlayer.getCellPhone());
-//            }
-//
-//            if (incomingPlayer.getAddressLine1() != null) {
-//                playerToAdd.setAddressLine1(incomingPlayer.getAddressLine1());
-//            }
-//
-//            if (incomingPlayer.getAddressLine2() != null) {
-//                playerToAdd.setAddressLine2(incomingPlayer.getAddressLine2());
-//            }
-//
-//            if (incomingPlayer.getCity() != null) {
-//                playerToAdd.setCity(incomingPlayer.getCity());
-//            }
-//
-//            if (incomingPlayer.getState() != null) {
-//                playerToAdd.setState(incomingPlayer.getState());
-//            }
-//
-//            if (incomingPlayer.getZip() != null) {
-//                playerToAdd.setZip(incomingPlayer.getZip());
-//            }
-//
-//            if (incomingPlayer.getUnions() != null) {
-//                playerToAdd.setUnions(incomingPlayer.getUnions());
-//            }
-//
-//            if (incomingPlayer.getType() != null) {
-//                playerToAdd.setType(incomingPlayer.getType());
-//            }
-//
-//            playerRepo.save(playerToAdd);
-//        } else if (playerRepo.findById(incomingPlayer.getId()).isPresent()) {
-//            Player playerToEdit = playerRepo.findById(incomingPlayer.getId()).get();
-//
-//            if (incomingPlayer.getFirstNameArea() != null) {
-//                playerToEdit.setFirstNameArea(incomingPlayer.getFirstNameArea());
-//            }
-//
-//            if (incomingPlayer.getLastName() != null) {
-//                playerToEdit.setLastName(incomingPlayer.getLastName());
-//            }
-//
-//            if (incomingPlayer.getEmail() != null) {
-//                playerToEdit.setEmail(incomingPlayer.getEmail());
-//            }
-//
-//            if (incomingPlayer.getHomePhone() != null) {
-//                playerToEdit.setHomePhone(incomingPlayer.getHomePhone());
-//            }
-//
-//            if (incomingPlayer.getCellPhone() != null) {
-//                playerToEdit.setCellPhone(incomingPlayer.getCellPhone());
-//            }
-//
-//            if (incomingPlayer.getAddressLine1() != null) {
-//                playerToEdit.setAddressLine1(incomingPlayer.getAddressLine1());
-//            }
-//
-//            if (incomingPlayer.getAddressLine2() != null) {
-//                playerToEdit.setAddressLine2(incomingPlayer.getAddressLine2());
-//            }
-//
-//            if (incomingPlayer.getCity() != null) {
-//                playerToEdit.setCity(incomingPlayer.getCity());
-//            }
-//
-//            if (incomingPlayer.getState() != null) {
-//                playerToEdit.setState(incomingPlayer.getState());
-//            }
-//
-//            if (incomingPlayer.getZip() != null) {
-//                playerToEdit.setZip(incomingPlayer.getZip());
-//            }
-//
-//            if (incomingPlayer.getUnions() != null) {
-//                playerToEdit.setUnions(incomingPlayer.getUnions());
-//            }
-//
-//            if (incomingPlayer.getType() != null) {
-//                playerToEdit.setType(incomingPlayer.getType());
-//            }
-//
-//            playerRepo.save(playerToEdit);
-//
-//        }
-//    } catch(
-//    Exception error)
-//
-//    {
-//        error.printStackTrace();
-//    }
-//        return(Collection<Player>)playerRepo.findAll();
-//}
-//
-
-//}
