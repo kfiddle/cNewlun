@@ -16,24 +16,18 @@ public class AvailablePerformance {
     @ManyToOne
     private Player player;
 
-    @ManyToOne
-    private Performance performance;
-
     private Long performanceId;
 
     private boolean accepted;
 
-    public AvailablePerformance() {}
+    public AvailablePerformance() {
+    }
 
     public AvailablePerformance(Long performanceId, boolean accepted) {
         this.performanceId = performanceId;
         this.accepted = accepted;
     }
 
-    public AvailablePerformance(Performance performance, boolean accepted) {
-        this.performance = performance;
-        this.accepted = accepted;
-    }
 
     public void setPerformanceId(Long performanceId) {
         this.performanceId = performanceId;
@@ -51,9 +45,6 @@ public class AvailablePerformance {
         return player;
     }
 
-    public Performance getPerformance() {
-        return performance;
-    }
 
     public Long getPerformanceId() {
         return performanceId;

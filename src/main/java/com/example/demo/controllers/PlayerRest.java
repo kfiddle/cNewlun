@@ -100,11 +100,11 @@ public class PlayerRest {
         return (Collection<Player>) playerRepo.findAll();
     }
 
-    @PostMapping("/set-psa")
-    public void setAvailablePerformancesForPlayer(@RequestBody Player incomingPlayer) {
+    @PostMapping("{incomingPlayerId}/set-psa")
+    public void setAvailablePerformancesForPlayer(@PathVariable Long incomingPlayerId, @RequestBody List<AvailablePerformance> incomingAPs) {
         List<AvailablePerformance> availablePerformances = new ArrayList<>();
 
-        for (AvailablePerformance availablePerformance : incomingPlayer.getAvailablePerformances()) {
+        for (AvailablePerformance availablePerformance : incomingAPs) {
             if (performanceRepo.findById(availablePerformance.getPerformanceId()).isPresent()) {
                 AvailablePerformance newAP = new AvailablePerformance(availablePerformance.getPerformanceId(), availablePerformance.isAccepted());
                 availablePerformanceRepo.save(newAP);
@@ -112,8 +112,8 @@ public class PlayerRest {
             }
         }
 
-        if (playerRepo.findById(incomingPlayer.getId()).isPresent()) {
-            Player playerToSetPsa = playerRepo.findById(incomingPlayer.getId()).get();
+        if (playerRepo.findById(incomingPlayerId).isPresent()) {
+            Player playerToSetPsa = playerRepo.findById(incomingPlayerId).get();
 
             for (AvailablePerformance availablePerformance : playerToSetPsa.getAvailablePerformances()) {
                 availablePerformanceRepo.delete(availablePerformance);
