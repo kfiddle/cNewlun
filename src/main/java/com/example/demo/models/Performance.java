@@ -16,9 +16,13 @@ public class Performance implements Comparable<Performance> {
 
     private String title;
     private LocalDate date;
+    private int numberOfServices;
 
     @OneToMany()
     private Collection<Piece> pieces;
+
+    @OneToMany
+    private Collection<AvailablePerformance> availablePerformances;
 
     public Performance() {
     }
@@ -32,6 +36,12 @@ public class Performance implements Comparable<Performance> {
         this.date = date;
     }
 
+    public Performance(String title, LocalDate date, int numberOfServices) {
+        this.title = title;
+        this.date = date;
+        this.numberOfServices = numberOfServices;
+    }
+
     public void setPieces(Collection<Piece> pieces) {
         this.pieces = pieces;
     }
@@ -42,6 +52,10 @@ public class Performance implements Comparable<Performance> {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public void setNumberOfServices(int numberOfServices) {
+        this.numberOfServices = numberOfServices;
     }
 
     public Long getId() {
@@ -58,6 +72,10 @@ public class Performance implements Comparable<Performance> {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public int getNumberOfServices() {
+        return numberOfServices;
     }
 
     @Override

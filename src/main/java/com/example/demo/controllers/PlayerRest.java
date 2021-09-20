@@ -114,7 +114,17 @@ public class PlayerRest {
 
         if (playerRepo.findById(incomingPlayer.getId()).isPresent()) {
             Player playerToSetPsa = playerRepo.findById(incomingPlayer.getId()).get();
+
+            for (AvailablePerformance availablePerformance : playerToSetPsa.getAvailablePerformances()) {
+                availablePerformanceRepo.delete(availablePerformance);
+            }
+
             playerToSetPsa.setAvailablePerformances(availablePerformances);
+            playerRepo.save(playerToSetPsa);
+
+            for (AvailablePerformance availablePerformance : playerToSetPsa.getAvailablePerformances()) {
+                System.out.println(availablePerformance.getPerformanceId() + "  " + availablePerformance.isAccepted());
+            }
         }
     }
 
