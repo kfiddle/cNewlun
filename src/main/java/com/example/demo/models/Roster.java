@@ -2,10 +2,8 @@ package com.example.demo.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Roster {
@@ -37,9 +35,11 @@ public class Roster {
     private int pianos;
     private int harps;
 
-
     @OneToOne
     private Piece piece;
+
+    @ManyToMany
+    private Collection<Player> players;
 
     public Roster() {
     }
@@ -89,6 +89,10 @@ public class Roster {
         this.percussions = percussions;
         this.pianos = pianos;
         this.harps = harps;
+    }
+
+    public void setPlayers(Collection<Player> players) {
+        this.players = players;
     }
 
     public void setFirstViolins(int firstViolins) {
@@ -157,6 +161,11 @@ public class Roster {
 
     public void setPianos(int pianos) {
         this.pianos = pianos;
+    }
+
+
+    public Collection<Player> getPlayers() {
+        return players;
     }
 
     public void setHarps(int harps) {

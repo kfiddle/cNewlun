@@ -39,6 +39,8 @@ public class Player {
     private int subRanking;
     private Chair chair;
 
+    @ManyToMany
+    private Collection<Roster> rosters;
 
     @ManyToMany
     private Collection<Piece> pieces;
@@ -48,6 +50,9 @@ public class Player {
 
     @ManyToMany
     private Collection<PerformanceId> performanceIds;
+
+    @ManyToMany
+    private Collection<Performance> performances;
 
     public Player() {
     }
@@ -182,6 +187,10 @@ public class Player {
         this.zip = zip;
     }
 
+    public void setRosters(Collection<Roster> rosters) {
+        this.rosters = rosters;
+    }
+
     public void setInstrumentEnum(InstrumentEnum instrumentEnum) {
         this.instrumentEnum = instrumentEnum;
     }
@@ -296,6 +305,9 @@ public class Player {
         return performanceIds;
     }
 
+    public Collection<Roster> getRosters() {
+        return rosters;
+    }
 
     public void setAllProps(Player otherPlayer) {
 

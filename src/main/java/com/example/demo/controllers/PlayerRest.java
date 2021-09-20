@@ -122,6 +122,8 @@ public class PlayerRest {
             playerToSetPsa.setAvailablePerformances(availablePerformances);
             playerRepo.save(playerToSetPsa);
 
+            System.out.println(playerToSetPsa.getFirstNameArea());
+
             for (AvailablePerformance availablePerformance : playerToSetPsa.getAvailablePerformances()) {
                 System.out.println(availablePerformance.getPerformanceId() + "  " + availablePerformance.isAccepted());
             }

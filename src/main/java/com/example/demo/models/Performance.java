@@ -1,9 +1,6 @@
 package com.example.demo.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -23,6 +20,9 @@ public class Performance implements Comparable<Performance> {
 
     @OneToMany
     private Collection<AvailablePerformance> availablePerformances;
+
+    @ManyToMany
+    private Collection<Player> players;
 
     public Performance() {
     }

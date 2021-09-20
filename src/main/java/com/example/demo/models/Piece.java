@@ -20,28 +20,6 @@ public class Piece implements Comparable<Piece> {
     private String title;
     private String composer;
 
-    private int firstViolins;
-    private int secondViolins;
-    private int violas;
-    private int cellos;
-    private int basses;
-
-    private int flutes;
-    private int oboes;
-    private int clarinets;
-    private int ebClarinets;
-    private int bassoons;
-
-    private int horns;
-    private int trumpets;
-    private int trombones;
-
-    private int tubas;
-    private int timpanis;
-    private int percussions;
-
-    private int pianos;
-    private int harps;
 
     @OneToOne
     private Roster roster;
