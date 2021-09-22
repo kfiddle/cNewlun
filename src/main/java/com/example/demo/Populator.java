@@ -48,63 +48,6 @@ public class Populator implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 
-//        Instrument violin = new Instrument("Violin", InstrumentEnum.VIOLIN);
-//        Instrument viola = new Instrument("Viola", InstrumentEnum.VIOLA);
-//        Instrument cello = new Instrument("cello", InstrumentEnum.CELLO);
-//        Instrument bass = new Instrument("Bass", InstrumentEnum.BASS);
-//        Instrument flute = new Instrument("Flute", InstrumentEnum.FLUTE);
-//        Instrument oboe = new Instrument("Oboe", InstrumentEnum.OBOE);
-//        Instrument clarinet = new Instrument("Clarinet", InstrumentEnum.CLARINET);
-//        Instrument eBClarinet = new Instrument("Eb Clarinet", InstrumentEnum.EBCLARINET);
-//        Instrument bassoon = new Instrument("Bassoon", InstrumentEnum.BASSOON);
-//        Instrument horn = new Instrument("Horn", InstrumentEnum.HORN);
-//        Instrument trumpet = new Instrument("Trumpet", InstrumentEnum.TRUMPET);
-//        Instrument trombone = new Instrument("Trombone", InstrumentEnum.TROMBONE);
-//        Instrument tuba = new Instrument("Tuba", InstrumentEnum.TUBA);
-//        Instrument timpani = new Instrument("Timpani", InstrumentEnum.TIMPANI);
-//        Instrument percussion = new Instrument("Percussion", InstrumentEnum.PERCUSSION);
-//        Instrument piano = new Instrument("Piano", InstrumentEnum.PIANO);
-//        Instrument harp = new Instrument("Harp", InstrumentEnum.HARP);
-
-//        instrumentRepo.save(violin);
-//        instrumentRepo.save(viola);
-//        instrumentRepo.save(cello);
-//        instrumentRepo.save(bass);
-//        instrumentRepo.save(flute);
-//        instrumentRepo.save(oboe);
-//        instrumentRepo.save(clarinet);
-//        instrumentRepo.save(bassoon);
-//        instrumentRepo.save(eBClarinet);
-//        instrumentRepo.save(horn);
-//        instrumentRepo.save(trumpet);
-//        instrumentRepo.save(trombone);
-//        instrumentRepo.save(tuba);
-//        instrumentRepo.save(timpani);
-//        instrumentRepo.save(percussion);
-//        instrumentRepo.save(piano);
-//        instrumentRepo.save(harp);
-
-//        ArrayList<Instrument> violinList = new ArrayList<>();
-//        violinList.add(violin);
-//
-//        ArrayList<Instrument> violaList = new ArrayList<>();
-//        violaList.add(viola);
-
-//        ArrayList<Instrument> celloList = new ArrayList<>();
-//        celloList.add(cello);
-//
-//        ArrayList<Instrument> clarinetList = new ArrayList<>();
-//        clarinetList.add(clarinet);
-//
-//        ArrayList<Instrument> oboeList = new ArrayList<>();
-//        oboeList.add(oboe);
-//
-//        ArrayList<Instrument> eBClarinetList = new ArrayList<>();
-//        eBClarinetList.add(eBClarinet);
-//
-//        ArrayList<Instrument> fluteList = new ArrayList<>();
-//        fluteList.add(flute);
-
         Player leAnne = new Player("Leanne", "Wistrom", InstrumentEnum.FLUTE, Type.CONTRACT);
         Player seanG = new Player("Sean", "Gabriel", InstrumentEnum.FLUTE, Type.CONTRACT);
         Player sarahH = new Player("Sarah", "Hamilton", InstrumentEnum.EBCLARINET, Type.CONTRACT);
@@ -116,12 +59,92 @@ public class Populator implements CommandLineRunner {
         Player jeffS = new Player("Jeff", "Singler", InstrumentEnum.CELLO, Type.CONTRACT);
         Player jiYoung = new Player("Ji Young", "Nam", InstrumentEnum.VIOLA, Type.CONTRACT);
 
-        Player mariaV = new Player("Maria", "Vinas", InstrumentEnum.VIOLIN, Type.SUB);
-        Player gingerV = new Player("Ginger", "Winas", InstrumentEnum.VIOLIN, Type.SUB);
-        Player beano = new Player("Bean", "Pasta", InstrumentEnum.VIOLIN, Type.SUB);
-        Player gracie = new Player("Grace", "Pasta", InstrumentEnum.VIOLIN, Type.SUB);
-        Player doodle = new Player("Doodle", "Pasta", InstrumentEnum.VIOLIN, Type.SUB);
-        Player nHess = new Player("Nate", "Hess", InstrumentEnum.VIOLIN, Type.SUB);
+        Player db = new Player("David", "Boutin-Bourque", InstrumentEnum.CLARINET, Type.CONTRACT);
+        Player lk = new Player("Laura", "Laura Koepke", InstrumentEnum.BASSOON, Type.CONTRACT);
+        Player lel = new Player("Sarah Elizabeth", "Lee", InstrumentEnum.BASSOON, Type.CONTRACT);
+        Player cr = new Player("Chris", "Rapier", InstrumentEnum.HORN, Type.CONTRACT);
+        Player ma = new Player("Mark", "Addleman", InstrumentEnum.HORN, Type.CONTRACT);
+        Player es = new Player("Emily", "Shelley", InstrumentEnum.HORN, Type.CONTRACT);
+        Player ba = new Player("Bryan", "Adkins", InstrumentEnum.HORN, Type.CONTRACT);
+        Player bs = new Player("Benjamin", "Strecker", InstrumentEnum.HORN, Type.CONTRACT);
+        Player gd = new Player("Gary", "Davis", InstrumentEnum.TRUMPET, Type.CONTRACT);
+        Player da = new Player("Douglas", "Amos", InstrumentEnum.TRUMPET, Type.CONTRACT);
+        Player mh = new Player("Micah", "Holt", InstrumentEnum.TRUMPET, Type.CONTRACT);
+        Player wc = new Player("Whitney", "Claire", InstrumentEnum.TROMBONE, Type.CONTRACT);
+        Player sb = new Player("Sean", "Bessette", InstrumentEnum.TROMBONE, Type.CONTRACT);
+        Player kh = new Player("Ken", "Heinlein", InstrumentEnum.TUBA, Type.CONTRACT);
+        Player bradA = new Player("Brad", "Amidon", InstrumentEnum.PERCUSSION, Type.CONTRACT);
+        Player ml = new Player("Matt", "Larson", InstrumentEnum.PERCUSSION, Type.CONTRACT);
+        Player mr = new Player("Melody", "Rapier", InstrumentEnum.HARP, Type.CONTRACT);
+
+        Player kj = new Player("Ken", "Johnston", InstrumentEnum.VIOLIN, Type.CONTRACT);
+        Player sls = new Player("Sandro", "Leal-Santiesteban", InstrumentEnum.VIOLIN, Type.CONTRACT);
+        Player jh = new Player("Joshua", "Huang", InstrumentEnum.VIOLIN, Type.CONTRACT);
+        Player melissaH = new Player("Melissa", "Hernandez", InstrumentEnum.VIOLIN, Type.CONTRACT);
+        Player ah = new Player("Alexander", "Hettinga", InstrumentEnum.VIOLIN, Type.CONTRACT);
+        Player stefS = new Player("Stefanie", "Schore", InstrumentEnum.VIOLIN, Type.CONTRACT);
+        Player yk = new Player("Yejee", "Kim", InstrumentEnum.VIOLIN, Type.CONTRACT);
+        Player mp = new Player("Maura", "Pelinsky", InstrumentEnum.VIOLIN, Type.CONTRACT);
+        Player jc = new Player("Janice", "Carlson", InstrumentEnum.VIOLIN, Type.CONTRACT);
+        Player benS = new Player("Benjamin", "Schantz", InstrumentEnum.VIOLA, Type.CONTRACT);
+
+        Player ericaS = new Player("Erica", "Snowden-Rodriguez", InstrumentEnum.CELLO, Type.CONTRACT);
+        Player wt = new Player("Will", "Teegarden", InstrumentEnum.CELLO, Type.CONTRACT);
+        Player nadineS = new Player("Nadine", "Sherman", InstrumentEnum.CELLO, Type.CONTRACT);
+        Player bt = new Player("Robert ", "Nicholson", InstrumentEnum.CELLO, Type.CONTRACT);
+        Player jv = new Player("Jean ", "Verdecchia", InstrumentEnum.CELLO, Type.CONTRACT);
+
+        Player kieranH = new Player("Kieran", "Hanlon", InstrumentEnum.BASS, Type.CONTRACT);
+        Player josephH = new Player("Joseph", "Hernandez", InstrumentEnum.BASS, Type.CONTRACT);
+        Player tomC = new Player("Thomas", "Christopherson", InstrumentEnum.BASS, Type.CONTRACT);
+        Player jamesM = new Player("James", "Mohney", InstrumentEnum.BASS, Type.CONTRACT);
+
+        playerRepo.save(db);
+        playerRepo.save(lk);
+        playerRepo.save(lel);
+        playerRepo.save(cr);
+        playerRepo.save(ma);
+        playerRepo.save(es);
+
+        playerRepo.save(ba);
+        playerRepo.save(bs);
+        playerRepo.save(gd);
+        playerRepo.save(da);
+        playerRepo.save(mh);
+        playerRepo.save(wc);
+        playerRepo.save(sb);
+        playerRepo.save(kh);
+        playerRepo.save(bradA);
+        playerRepo.save(ml);
+        playerRepo.save(mr);
+        playerRepo.save(kj);
+        playerRepo.save(sls);
+        playerRepo.save(jh);
+        playerRepo.save(melissaH);
+        playerRepo.save(ah);
+        playerRepo.save(stefS);
+        playerRepo.save(yk);
+        playerRepo.save(mp);
+        playerRepo.save(jc);
+        playerRepo.save(benS);
+        playerRepo.save(ericaS);
+        playerRepo.save(wt);
+        playerRepo.save(nadineS);
+        playerRepo.save(bt);
+        playerRepo.save(jv);
+
+        playerRepo.save(kieranH);
+        playerRepo.save(josephH);
+        playerRepo.save(tomC);
+        playerRepo.save(jamesM);
+
+
+        Player mariaV = new Player("Maria", "Park", InstrumentEnum.VIOLIN, Type.SUB);
+        Player gingerV = new Player("Ginger", "Smith", InstrumentEnum.VIOLIN, Type.SUB);
+        Player beano = new Player("Mike", "Chen", InstrumentEnum.VIOLIN, Type.SUB);
+        Player gracie = new Player("Lou", "Lev", InstrumentEnum.VIOLIN, Type.SUB);
+        Player doodle = new Player("Susan", "Britton", InstrumentEnum.VIOLIN, Type.SUB);
+        Player nHess = new Player("Diana", "Pepelea", InstrumentEnum.VIOLIN, Type.SUB);
 
         playerRepo.save(mariaV);
         playerRepo.save(gingerV);
@@ -170,89 +193,115 @@ public class Populator implements CommandLineRunner {
 
         Collection<InstrumentNumber> instrumentNumbersForPulcinella = makeRoster();
 
-        Piece stringsPiece = new Piece("Strings Piece");
-        Piece windsPiece = new Piece("Winds Only");
-        Piece fullGroup = new Piece("Huge Symphony");
-        Piece pulcinella = new Piece("Pulcinella", "Stravinsky", instrumentNumbersForPulcinella);
-        Piece beeth6 = new Piece("Beethoven Symphony 6");
+        Collection<Piece> sym1Pieces = new ArrayList<>();
+        Collection<Piece> sym2Pieces = new ArrayList<>();
+        Collection<Piece> sym3Pieces = new ArrayList<>();
+        Collection<Piece> sym4Pieces = new ArrayList<>();
+        Collection<Piece> sym5Pieces = new ArrayList<>();
+
+        Collection<Piece> nutPieces = new ArrayList<>();
+        Collection<Piece> messiahPieces = new ArrayList<>();
+
 
         Piece rousePiece = new Piece("Rouse Piece", "Rouse");
         Piece brahms = new Piece("Brahms 2", "Brahms");
-        Piece pulcinella2 = new Piece("pulce 2", "Stravinsky");
-
-
-        Piece stringsPiece3 = new Piece("Strings Piece3");
-        Piece windsPiece3 = new Piece("Winds Only3");
-        Piece fullGroup3 = new Piece("Huge Symphony3");
-        Piece pulcinella3 = new Piece("pulce 3");
-        Piece beeth3 = new Piece("Beethoven Symphony 3");
-
-//        Collection<Instrument> stringsPlayers = new ArrayList<>();
-//        stringsPlayers.add(violin);
-//        stringsPlayers.add(violin);
-
-        pieceRepo.save(pulcinella2);
+        Piece pulcinella = new Piece("Pulcinella", "Stravinsky");
         pieceRepo.save(rousePiece);
         pieceRepo.save(brahms);
-
-        pieceRepo.save(pulcinella3);
-        pieceRepo.save(fullGroup3);
-        pieceRepo.save(stringsPiece3);
-        pieceRepo.save(windsPiece3);
-        pieceRepo.save(beeth3);
-
-        pieceRepo.save(pulcinella);
-        pieceRepo.save(fullGroup);
-        pieceRepo.save(stringsPiece);
-        pieceRepo.save(windsPiece);
-        pieceRepo.save(beeth6);
-
-//        pulcinella.setInstruments(stringsPlayers);
         pieceRepo.save(pulcinella);
 
-        Performance sym1 = new Performance("Sym 1", LocalDate.now());
-        Performance pops1 = new Performance("Pops 1", LocalDate.of(2021, 10, 21));
+        sym1Pieces.add(rousePiece);
+        sym1Pieces.add(brahms);
+        sym1Pieces.add(pulcinella);
+
+
+        Piece nutCrack = new Piece("Nutcracker", "Tchaikovsky");
+        pieceRepo.save(nutCrack);
+
+        Piece mssh = new Piece("Messian", "Handel");
+        pieceRepo.save(mssh);
+
+        Piece sorcerer = new Piece("Sorcerer's Apprentice", "Dukas");
+        Piece poulenc = new Piece("Poulenc Piece", "Poulenc");
+        Piece franck= new Piece("Symphony", "Franck");
+        pieceRepo.save(sorcerer);
+        pieceRepo.save(poulenc);
+        pieceRepo.save(franck);
+
+        sym2Pieces.add(sorcerer);
+        sym2Pieces.add(poulenc);
+        sym2Pieces.add(franck);
+
+        Piece remick = new Piece("Remick Piece", "Remick");
+        Piece wagner = new Piece("Wagner Piece", "Wagner");
+        Piece rach = new Piece("Piano Concerto", "Rachmaninoff");
+        pieceRepo.save(remick);
+        pieceRepo.save(wagner);
+        pieceRepo.save(rach);
+
+        sym3Pieces.add(remick);
+        sym3Pieces.add(wagner);
+        sym3Pieces.add(rach);
+
+        Piece adams = new Piece("Adams Piece", "Adams");
+        Piece ibert = new Piece("Ibert Piece", "Ibert");
+        Piece glaz = new Piece("Glazunov Piece", "Glazunov");
+        pieceRepo.save(adams);
+        pieceRepo.save(ibert);
+        pieceRepo.save(glaz);
+
+        sym4Pieces.add(adams);
+        sym4Pieces.add(ibert);
+        sym4Pieces.add(glaz);
+
+        Piece mahler = new Piece("Symphony 2", "Mahler");
+        Piece tian = new Piece("Tian Piece", "Tian");
+        pieceRepo.save(mahler);
+        pieceRepo.save(tian);
+
+        sym5Pieces.add(mahler);
+        sym5Pieces.add(tian);
+
+
+
+        Performance church = new Performance("Church", LocalDate.of(2021, 11, 21));
+        Performance nutCracker = new Performance("Nutcracker", LocalDate.of(2021, 12, 16));
         Performance messiah = new Performance("Messiah", LocalDate.of(2021, 12, 10));
-        Performance sym2 = new Performance("Sym 2", LocalDate.of(2021, 10, 25));
 
-        Collection<Piece> piecesForSym1 = new ArrayList<>();
-        piecesForSym1.add(pulcinella);
-        piecesForSym1.add(fullGroup);
-        piecesForSym1.add(stringsPiece);
-        piecesForSym1.add(beeth6);
+        Performance sym1 = new Performance("Sym 1", LocalDate.of(2022, 1, 1));
+        Performance sym2 = new Performance("Sym 2", LocalDate.of(2022, 1, 25));
+        Performance sym3 = new Performance("Sym 3", LocalDate.of(2022, 2, 25));
+        Performance sym4 = new Performance("Sym 4", LocalDate.of(2022, 3, 25));
+        Performance sym5 = new Performance("Sym 5", LocalDate.of(2022, 4, 25));
 
-        Collection<Piece> piecesForPops1 = new ArrayList<>();
-        piecesForPops1.add(pulcinella2);
-        piecesForPops1.add(rousePiece);
-        piecesForPops1.add(brahms);
+        Performance pops1 = new Performance("Pops 1", LocalDate.of(2022, 1, 15));
+        Performance pops2 = new Performance("Pops 2", LocalDate.of(2022, 2, 15));
+        Performance pops3 = new Performance("Pops 3", LocalDate.of(2022, 3, 16));
+        Performance pops4 = new Performance("Pops 4", LocalDate.of(2022, 4, 17));
+        Performance pops5 = new Performance("Pops 5", LocalDate.of(2022, 5, 5));
 
-        Collection<Piece> piecesForMessiah = new ArrayList<>();
-        piecesForMessiah.add(pulcinella3);
-        piecesForMessiah.add(fullGroup3);
-        piecesForMessiah.add(stringsPiece3);
-        piecesForMessiah.add(beeth3);
+        Performance youth = new Performance("Youth", LocalDate.of(2022, 6, 1));
+
+        sym1.setPieces(sym1Pieces);
+        sym2.setPieces(sym2Pieces);
+        sym3.setPieces(sym3Pieces);
+        sym4.setPieces(sym4Pieces);
+        sym5.setPieces(sym5Pieces);
 
         performanceRepo.save(sym1);
+        performanceRepo.save(sym2);
+        performanceRepo.save(sym3);
+        performanceRepo.save(sym4);
+        performanceRepo.save(sym5);
+
+
         performanceRepo.save(pops1);
         performanceRepo.save(messiah);
         performanceRepo.save(sym2);
 
-        pieceRepo.save(pulcinella);
-        pieceRepo.save(fullGroup);
-        pieceRepo.save(stringsPiece);
-        pieceRepo.save(windsPiece);
-
-        sym1.setPieces(piecesForSym1);
-        pops1.setPieces(piecesForPops1);
-        messiah.setPieces(piecesForMessiah);
-
-        performanceRepo.save(sym1);
-        performanceRepo.save(pops1);
-        performanceRepo.save(messiah);
 
 
         Collection<InstrumentNumber> instrumentNumbersForTiger = makeRoster();
-
 
 
         Piece crouchingTiger = new Piece("Crouching Tiger", "Tan Dun", instrumentNumbersForTiger);
@@ -278,9 +327,6 @@ public class Populator implements CommandLineRunner {
         rosterRepo.save(rouseRoster);
         pieceRepo.save(rousePiece);
 
-        System.out.println(pulcinella.getInstrumentNumbers().size());
-        System.out.println(crouchingTiger.getInstrumentNumbers().size());
-        System.out.println(rousePiece.getRoster().getBasses() + "  are the basses in the Rouse");
 
     }
 }

@@ -2,8 +2,8 @@ package com.example.demo.enums;
 
 public enum InstrumentEnum {
 
-//    VIOLIN1("Violin 1"),
-//    VIOLIN2("Violin 2"),
+    VIOLIN1("Violin 1"),
+    VIOLIN2("Violin 2"),
     VIOLIN("Violin"),
     VIOLA("Viola"),
     CELLO("Cello"),
