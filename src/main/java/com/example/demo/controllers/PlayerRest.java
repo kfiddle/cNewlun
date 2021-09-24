@@ -86,7 +86,8 @@ public class PlayerRest {
                     Player playerToAdd = new Player(incomingPlayer.getFirstNameArea(), incomingPlayer.getLastName());
                     playerToAdd.setAllProps(incomingPlayer);
                     playerRepo.save(playerToAdd);
-                    System.out.println(playerToAdd.getFirstNameArea() + "   " + playerToAdd.getLastName() + "  " + playerToAdd.getInstrumentEnum());
+                    System.out.println(playerToAdd.getFirstNameArea() + " and now with  " + playerToAdd.getLastName() + " an instrument called " + playerToAdd.getInstrumentEnum() +
+                            playerToAdd.getAddressLine1() + "   " + playerToAdd.getCity() + "      " + playerToAdd.getCellPhone());
                 }
             } else if (playerRepo.findById(incomingPlayer.getId()).isPresent()) {
                 Player playerToEdit = playerRepo.findById(incomingPlayer.getId()).get();
@@ -97,6 +98,7 @@ public class PlayerRest {
                 Exception error) {
             error.printStackTrace();
         }
+
         return (Collection<Player>) playerRepo.findAll();
     }
 

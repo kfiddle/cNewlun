@@ -294,6 +294,10 @@ public class Populator implements CommandLineRunner {
         performanceRepo.save(sym4);
         performanceRepo.save(sym5);
 
+        performanceRepo.save(pops2);
+        performanceRepo.save(pops3);
+        performanceRepo.save(pops4);
+        performanceRepo.save(pops5);
 
         performanceRepo.save(pops1);
         performanceRepo.save(messiah);
@@ -301,31 +305,31 @@ public class Populator implements CommandLineRunner {
 
 
 
-        Collection<InstrumentNumber> instrumentNumbersForTiger = makeRoster();
-
-
-        Piece crouchingTiger = new Piece("Crouching Tiger", "Tan Dun", instrumentNumbersForTiger);
-        pieceRepo.save(crouchingTiger);
-
-        Roster pulcinellaRoster = new Roster();
-        rosterRepo.save(pulcinellaRoster);
-
-        pulcinella.setRoster(pulcinellaRoster);
-        pulcinella.getRoster().setHarps(7);
-
-        rosterRepo.save(pulcinellaRoster);
-        pieceRepo.save(pulcinella);
-
-        Roster rouseRoster = new Roster();
-        rosterRepo.save(rouseRoster);
-
-
-        rousePiece.setRoster(rouseRoster);
-        pieceRepo.save(rousePiece);
-
-        rousePiece.getRoster().setBasses(11);
-        rosterRepo.save(rouseRoster);
-        pieceRepo.save(rousePiece);
+//        Collection<InstrumentNumber> instrumentNumbersForTiger = makeRoster();
+//
+//
+//        Piece crouchingTiger = new Piece("Crouching Tiger", "Tan Dun", instrumentNumbersForTiger);
+//        pieceRepo.save(crouchingTiger);
+//
+//        Roster pulcinellaRoster = new Roster();
+//        rosterRepo.save(pulcinellaRoster);
+//
+//        pulcinella.setRoster(pulcinellaRoster);
+//        pulcinella.getRoster().setHarps(7);
+//
+//        rosterRepo.save(pulcinellaRoster);
+//        pieceRepo.save(pulcinella);
+//
+//        Roster rouseRoster = new Roster();
+//        rosterRepo.save(rouseRoster);
+//
+//
+//        rousePiece.setRoster(rouseRoster);
+//        pieceRepo.save(rousePiece);
+//
+//        rousePiece.getRoster().setBasses(11);
+//        rosterRepo.save(rouseRoster);
+//        pieceRepo.save(rousePiece);
 
 
     }
