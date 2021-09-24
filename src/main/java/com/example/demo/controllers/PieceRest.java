@@ -115,7 +115,6 @@ public class PieceRest {
                 rosterRepo.save(rosterToAdd);
                 rosterToAdd.setAllProps(incomingRoster);
                 pieceToGetRoster.setRoster(rosterToAdd);
-                System.out.println(pieceToGetRoster.getRoster().getBasses() + " basses for real dude");
                 pieceRepo.save(pieceToGetRoster);
             }
         } catch (

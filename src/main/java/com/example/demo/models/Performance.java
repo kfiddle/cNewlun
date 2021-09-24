@@ -2,7 +2,10 @@ package com.example.demo.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Performance implements Comparable<Performance> {
@@ -22,7 +25,7 @@ public class Performance implements Comparable<Performance> {
     private Collection<AvailablePerformance> availablePerformances;
 
     @ManyToMany
-    private Collection<Player> players;
+    private Set<Player> players;
 
     public Performance() {
     }
@@ -44,6 +47,10 @@ public class Performance implements Comparable<Performance> {
 
     public void setPieces(Collection<Piece> pieces) {
         this.pieces = pieces;
+    }
+
+    public void setPlayers(Set<Player> players) {
+        this.players = players;
     }
 
     public void setTitle(String title) {
@@ -74,6 +81,10 @@ public class Performance implements Comparable<Performance> {
         return date;
     }
 
+    public Collection<Player> getPlayers() {
+        return players;
+    }
+
     public int getNumberOfServices() {
         return numberOfServices;
     }
@@ -81,5 +92,11 @@ public class Performance implements Comparable<Performance> {
     @Override
     public int compareTo(Performance otherPerformance) {
         return date.compareTo(otherPerformance.getDate());
+    }
+
+    public void addAPlayer(Player playerToAdd) {
+        Set<Player> currentPlayers = new HashSet<>(players);
+        currentPlayers.add(playerToAdd);
+        players = currentPlayers;
     }
 }

@@ -4,6 +4,7 @@ package com.example.demo.controllers;
 import com.example.demo.enums.InstrumentEnum;
 import com.example.demo.models.AvailablePerformance;
 import com.example.demo.models.Instrument;
+import com.example.demo.models.Performance;
 import com.example.demo.models.Player;
 import com.example.demo.repositories.*;
 import org.springframework.data.domain.Sort;
@@ -61,7 +62,7 @@ public class PlayerRest {
 
     @RequestMapping("/subs/{instrument}")
     public Collection<Player> getSubsOfSpecifiedInstrument(@PathVariable InstrumentEnum instrument) {
-            return playerRepo.findByTypeAndInstrumentEnum(SUB, instrument, Sort.by("subRanking", "lastName"));
+        return playerRepo.findByTypeAndInstrumentEnum(SUB, instrument, Sort.by("subRanking", "lastName"));
     }
 
 
@@ -106,29 +107,29 @@ public class PlayerRest {
     public void setAvailablePerformancesForPlayer(@PathVariable Long incomingPlayerId, @RequestBody List<AvailablePerformance> incomingAPs) {
         List<AvailablePerformance> availablePerformances = new ArrayList<>();
 
+        if (playerRepo.findById(incomingPlayerId).isPresent()) {
+            Player playerToSetPsa = playerRepo.findById(incomingPlayerId).get();
+
         for (AvailablePerformance availablePerformance : incomingAPs) {
             if (performanceRepo.findById(availablePerformance.getPerformanceId()).isPresent()) {
                 AvailablePerformance newAP = new AvailablePerformance(availablePerformance.getPerformanceId(), availablePerformance.isAccepted());
                 availablePerformanceRepo.save(newAP);
                 availablePerformances.add(newAP);
+
+                Performance performanceToTakePlayer = performanceRepo.findById(availablePerformance.getPerformanceId()).get();
+                performanceToTakePlayer.addAPlayer(playerToSetPsa);
+                performanceRepo.save(performanceToTakePlayer);
             }
         }
 
-        if (playerRepo.findById(incomingPlayerId).isPresent()) {
-            Player playerToSetPsa = playerRepo.findById(incomingPlayerId).get();
+
 
             for (AvailablePerformance availablePerformance : playerToSetPsa.getAvailablePerformances()) {
                 availablePerformanceRepo.delete(availablePerformance);
             }
-
             playerToSetPsa.setAvailablePerformances(availablePerformances);
             playerRepo.save(playerToSetPsa);
 
-            System.out.println(playerToSetPsa.getFirstNameArea());
-
-            for (AvailablePerformance availablePerformance : playerToSetPsa.getAvailablePerformances()) {
-                System.out.println(availablePerformance.getPerformanceId() + "  " + availablePerformance.isAccepted());
-            }
         }
     }
 

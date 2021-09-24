@@ -297,6 +297,10 @@ public class Player {
         return pieces;
     }
 
+    public Collection<Performance> getPerformances() {
+        return performances;
+    }
+
     public List<AvailablePerformance> getAvailablePerformances() {
         return availablePerformances;
     }
@@ -368,7 +372,6 @@ public class Player {
         }
 
     }
-
 
 
 }
