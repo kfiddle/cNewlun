@@ -231,4 +231,65 @@ public class Orchestration {
     public Piece getPiece() {
         return piece;
     }
+
+    public void setAllProps(Orchestration incomingOrchestration) {
+
+        if (incomingOrchestration.getFirstViolins() > 0) {
+            setFirstViolins(incomingOrchestration.getFirstViolins());
+
+        }
+        if (incomingOrchestration.getSecondViolins() > 0) {
+            setSecondViolins(incomingOrchestration.getSecondViolins());
+
+        }
+        if (incomingOrchestration.getViolas() > 0) {
+            setViolas(incomingOrchestration.getViolas());
+        }
+        if (incomingOrchestration.getCellos() > 0) {
+            setCellos(incomingOrchestration.getCellos());
+        }
+        if (incomingOrchestration.getBasses() > 0) {
+            setBasses(incomingOrchestration.getBasses());
+        }
+        if (incomingOrchestration.getFlutes() > 0) {
+            setFlutes(incomingOrchestration.getFlutes());
+        }
+        if (incomingOrchestration.getOboes() > 0) {
+            setOboes(incomingOrchestration.getOboes());
+        }
+        if (incomingOrchestration.getClarinets() > 0) {
+            setClarinets(incomingOrchestration.getClarinets());
+        }
+        if (incomingOrchestration.getEbClarinets() > 0) {
+            setEbClarinets(incomingOrchestration.getEbClarinets());
+        }
+        if (incomingOrchestration.getBassoons() > 0) {
+            setBassoons(incomingOrchestration.getBassoons());
+        }
+        if (incomingOrchestration.getHorns() > 0) {
+            setHorns(incomingOrchestration.getHorns());
+        }
+        if (incomingOrchestration.getTrumpets() > 0) {
+            setTrumpets(incomingOrchestration.getTrumpets());
+        }
+        if (incomingOrchestration.getTrombones() > 0) {
+            setTrombones(incomingOrchestration.getTrombones());
+        }
+        if (incomingOrchestration.getTubas() > 0) {
+            setTubas(incomingOrchestration.getTubas());
+        }
+        if (incomingOrchestration.getTimpanis() > 0) {
+            setTimpanis(incomingOrchestration.getTimpanis());
+        }
+        if (incomingOrchestration.getPercussions() > 0) {
+            setPercussions(incomingOrchestration.getPercussions());
+        }
+        if (incomingOrchestration.getHarps() > 0) {
+            setHarps(incomingOrchestration.getHarps());
+        }
+        if (incomingOrchestration.getPianos() > 0) {
+            setPianos(incomingOrchestration.getPianos());
+        }
+
+    }
 }

@@ -16,9 +16,6 @@ public class Player {
     @GeneratedValue
     private Long id;
 
-    @ManyToMany
-    private List<Instrument> instruments;
-
     private InstrumentEnum instrumentEnum;
     private Type type;
 
@@ -51,8 +48,6 @@ public class Player {
     @ManyToMany
     private Collection<PerformanceId> performanceIds;
 
-    @ManyToMany
-    private Collection<Performance> performances;
 
     public Player() {
     }
@@ -68,12 +63,6 @@ public class Player {
         this.email = email;
     }
 
-    public Player(String firstNameArea, String lastName, List<Instrument> instruments) {
-        this.firstNameArea = firstNameArea;
-        this.lastName = lastName;
-        this.instruments = instruments;
-        this.instrumentEnum = instruments.get(0).getInstrumentEnum();
-    }
 
     public Player(String firstNameArea, String lastName, InstrumentEnum instrumentEnum, Type type) {
         this.firstNameArea = firstNameArea;
@@ -82,12 +71,11 @@ public class Player {
         this.type = type;
     }
 
-    public Player(String firstNameArea, String lastName, List<Instrument> instruments, Type type) {
+    public Player(String firstNameArea, String lastName, Type type) {
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
-        this.instruments = instruments;
         this.type = type;
-        this.instrumentEnum = instruments.get(0).getInstrumentEnum();
+
     }
 
     public Player(Player enteringPlayer, List<AvailablePerformance> availablePerformances) {
@@ -129,8 +117,7 @@ public class Player {
         this.chair = chair;
     }
 
-    public Player(List<Instrument> instruments, Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, Collection<Piece> pieces, Collection<PerformanceId> performanceIds) {
-        this.instruments = instruments;
+    public Player(Type type, String firstNameArea, String lastName, String email, String homePhone, String cellPhone, String addressLine1, String addressLine2, String city, String state, String zip, Collection<Piece> pieces, Collection<PerformanceId> performanceIds) {
         this.type = type;
         this.firstNameArea = firstNameArea;
         this.lastName = lastName;
@@ -144,7 +131,7 @@ public class Player {
         this.zip = zip;
         this.pieces = pieces;
         this.performanceIds = performanceIds;
-        this.instrumentEnum = instruments.get(0).getInstrumentEnum();
+
     }
 
     public void setFirstNameArea(String firstNameArea) {
@@ -195,9 +182,6 @@ public class Player {
         this.instrumentEnum = instrumentEnum;
     }
 
-    public void setInstruments(List<Instrument> instruments) {
-        this.instruments = instruments;
-    }
 
     public void setType(Type type) {
         this.type = type;
@@ -235,9 +219,6 @@ public class Player {
         return lastName;
     }
 
-    public Collection<Instrument> getInstruments() {
-        return instruments;
-    }
 
     public InstrumentEnum getInstrumentEnum() {
         return instrumentEnum;
@@ -295,10 +276,6 @@ public class Player {
 
     public Collection<Piece> getPieces() {
         return pieces;
-    }
-
-    public Collection<Performance> getPerformances() {
-        return performances;
     }
 
     public List<AvailablePerformance> getAvailablePerformances() {

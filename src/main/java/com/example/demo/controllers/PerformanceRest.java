@@ -79,18 +79,18 @@ public class PerformanceRest {
         return piecesToReturn;
     }
 
-    @PostMapping("/get-players-from-performance")
-    public void getPlayersFromAPerformance(@RequestBody Performance incomingPerformance) throws IOException {
-
-       if (performanceRepo.findById(incomingPerformance.getId()).isPresent()) {
-           Performance performanceToGrabPlayers = performanceRepo.findById(incomingPerformance.getId()).get();
-           if (!performanceToGrabPlayers.getPlayers().isEmpty()) {
-               for (Player player : performanceToGrabPlayers.getPlayers()) {
-                   System.out.println(player.getFirstNameArea() + "    " + player.getLastName());
-               }
-           }
-       }
-
-    }
+//    @PostMapping("/get-players-from-performance")
+//    public void getPlayersFromAPerformance(@RequestBody Performance incomingPerformance) throws IOException {
+//
+//       if (performanceRepo.findById(incomingPerformance.getId()).isPresent()) {
+//           Performance performanceToGrabPlayers = performanceRepo.findById(incomingPerformance.getId()).get();
+//           if (!performanceToGrabPlayers.getPlayers().isEmpty()) {
+//               for (Player player : performanceToGrabPlayers.getPlayers()) {
+//                   System.out.println(player.getFirstNameArea() + "    " + player.getLastName());
+//               }
+//           }
+//       }
+//
+//    }
 
 }

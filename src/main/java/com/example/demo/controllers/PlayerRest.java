@@ -103,35 +103,44 @@ public class PlayerRest {
         return (Collection<Player>) playerRepo.findAll();
     }
 
-    @PostMapping("{incomingPlayerId}/set-psa")
-    public void setAvailablePerformancesForPlayer(@PathVariable Long incomingPlayerId, @RequestBody List<AvailablePerformance> incomingAPs) {
-        List<AvailablePerformance> availablePerformances = new ArrayList<>();
-
-        if (playerRepo.findById(incomingPlayerId).isPresent()) {
-            Player playerToSetPsa = playerRepo.findById(incomingPlayerId).get();
-
-        for (AvailablePerformance availablePerformance : incomingAPs) {
-            if (performanceRepo.findById(availablePerformance.getPerformanceId()).isPresent()) {
-                AvailablePerformance newAP = new AvailablePerformance(availablePerformance.getPerformanceId(), availablePerformance.isAccepted());
-                availablePerformanceRepo.save(newAP);
-                availablePerformances.add(newAP);
-
-                Performance performanceToTakePlayer = performanceRepo.findById(availablePerformance.getPerformanceId()).get();
-                performanceToTakePlayer.addAPlayer(playerToSetPsa);
-                performanceRepo.save(performanceToTakePlayer);
-            }
-        }
+//    @PostMapping("{incomingPlayerId}/set-psa")
+//    public void setAvailablePerformancesForPlayer(@PathVariable Long incomingPlayerId, @RequestBody List<AvailablePerformance> incomingAPs) {
 
 
 
-            for (AvailablePerformance availablePerformance : playerToSetPsa.getAvailablePerformances()) {
-                availablePerformanceRepo.delete(availablePerformance);
-            }
-            playerToSetPsa.setAvailablePerformances(availablePerformances);
-            playerRepo.save(playerToSetPsa);
 
-        }
-    }
+
+
+
+
+
+
+        //        List<AvailablePerformance> availablePerformances = new ArrayList<>();
+//
+//        if (playerRepo.findById(incomingPlayerId).isPresent()) {
+//            Player playerToSetPsa = playerRepo.findById(incomingPlayerId).get();
+//
+//            for (AvailablePerformance availablePerformance : incomingAPs) {
+//                if (performanceRepo.findById(availablePerformance.getPerformanceId()).isPresent()) {
+//                    AvailablePerformance newAP = new AvailablePerformance(availablePerformance.getPerformanceId(), availablePerformance.isAccepted());
+//                    availablePerformanceRepo.save(newAP);
+//                    availablePerformances.add(newAP);
+//
+//                    Performance performanceToTakePlayer = performanceRepo.findById(availablePerformance.getPerformanceId()).get();
+//
+//                    performanceRepo.save(performanceToTakePlayer);
+//                }
+//            }
+//
+//
+//            for (AvailablePerformance availablePerformance : playerToSetPsa.getAvailablePerformances()) {
+//                availablePerformanceRepo.delete(availablePerformance);
+//            }
+//            playerToSetPsa.setAvailablePerformances(availablePerformances);
+//            playerRepo.save(playerToSetPsa);
+//
+//        }
+//    }
 
 
 }

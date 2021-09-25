@@ -14,6 +14,7 @@ public class Performance implements Comparable<Performance> {
     @GeneratedValue
     private Long id;
 
+
     private String title;
     private LocalDate date;
     private int numberOfServices;
@@ -24,8 +25,6 @@ public class Performance implements Comparable<Performance> {
     @OneToMany
     private Collection<AvailablePerformance> availablePerformances;
 
-    @ManyToMany
-    private Set<Player> players;
 
     public Performance() {
     }
@@ -47,10 +46,6 @@ public class Performance implements Comparable<Performance> {
 
     public void setPieces(Collection<Piece> pieces) {
         this.pieces = pieces;
-    }
-
-    public void setPlayers(Set<Player> players) {
-        this.players = players;
     }
 
     public void setTitle(String title) {
@@ -81,10 +76,6 @@ public class Performance implements Comparable<Performance> {
         return date;
     }
 
-    public Collection<Player> getPlayers() {
-        return players;
-    }
-
     public int getNumberOfServices() {
         return numberOfServices;
     }
@@ -94,9 +85,5 @@ public class Performance implements Comparable<Performance> {
         return date.compareTo(otherPerformance.getDate());
     }
 
-    public void addAPlayer(Player playerToAdd) {
-        Set<Player> currentPlayers = new HashSet<>(players);
-        currentPlayers.add(playerToAdd);
-        players = currentPlayers;
-    }
+
 }
